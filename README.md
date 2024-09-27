@@ -24,5 +24,6 @@ FuxiCTR 内部的函数封装的非常好，在使用其推荐函数前，我们
 训练，验证，测试，早停。
 
 
-# 1. LR （Logistic Regression）
+## 1. LR （Logistic Regression）
 
+##
