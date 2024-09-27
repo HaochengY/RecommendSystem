@@ -25,5 +25,5 @@ FuxiCTR 内部的函数封装的非常好，在使用其推荐函数前，我们
 
 
 ## 1. LR （Logistic Regression）
-
+2024-09-27 10:33:26,751 P32392 INFO [Metrics] logloss: 0.453165 - AUC: 0.976249
 ##
