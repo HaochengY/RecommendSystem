@@ -83,3 +83,12 @@ DeepCrossing 作为DNN的升级版，无非就是一个地方：将MLP换成了R
 ![image](https://github.com/user-attachments/assets/f3e54e7d-b141-425c-90cd-efe711ebba37)
 
 这一结构看似简单，但是站在当年的角度，这是**第一次完全没有进行任何特征处理的方法**，从embedding层到MLP层，全部由DL完成，传统的FFM，FM，LR模型最多也就是二阶交叉，Deepcrossing可以做到**深度交叉**，这是革命意义的。
+
+## 8. PNN
+在DNN的基础上还能另一个分支改动，改变embedding层的交互方法，使其不再是简单的concat拼接，而是采用乘积
+具体来说，这里还是用了一些一阶+二阶的思想的，输入一部分是直接进来的embeddingvector，另一部分那是他们的内积、外积（所以PNN分为IPNN和OPNN随着内积和外积的选择不同）。
+这一模型使得人们开始关注特征向量之间在输入DNN之前的交叉行为。
+
+综上所述，DNN，DeepCrossing，PNN都是使用了深度学习网络对特征进行深度交叉。这是传统模型无法达到的效果，然而，**对所有特征进行无差别交叉一定程度上忽略了原始特征中包含的有价值的信息**，如何权衡原始向量和交叉他们，是一个重要的研究方向。
+![image](https://github.com/user-attachments/assets/f13d0c20-0353-4705-8ec0-b9f3dc7b47ac)
+
