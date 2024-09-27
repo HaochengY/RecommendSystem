@@ -1,0 +1,160 @@
+2024-09-27 10:30:16,223 P32392 INFO FuxiCTR version: 2.3.2
+2024-09-27 10:30:16,223 P32392 INFO Params: {
+    "batch_norm": "False",
+    "batch_size": "128",
+    "data_format": "csv",
+    "data_root": "../data/",
+    "dataset_id": "Criteo_x1",
+    "debug_mode": "False",
+    "early_stop_patience": "2",
+    "embedding_dim": "4",
+    "embedding_regularizer": "1e-08",
+    "epochs": "5",
+    "eval_steps": "None",
+    "feature_cols": "[{'name': ['C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9', 'C10', 'C11', 'C12', 'C13', 'C14', 'C15', 'C16', 'C17', 'C18', 'C19', 'C20', 'C21', 'C22', 'C23', 'C24', 'C25', 'C26'], 'active': True, 'dtype': 'str', 'type': 'categorical'}]",
+    "feature_config": "None",
+    "feature_specs": "None",
+    "group_id": "None",
+    "hidden_activations": "relu",
+    "hidden_units": "[64, 32]",
+    "label_col": "{'name': 'label', 'dtype': 'float'}",
+    "learning_rate": "0.001",
+    "loss": "binary_crossentropy",
+    "metrics": "['logloss', 'AUC']",
+    "min_categr_count": "1",
+    "model": "Criteo_x1",
+    "model_id": "LR",
+    "model_root": "./checkpoints/",
+    "monitor": "AUC",
+    "monitor_mode": "max",
+    "net_dropout": "0",
+    "net_regularizer": "0",
+    "num_workers": "3",
+    "optimizer": "adam",
+    "pickle_feature_encoder": "True",
+    "save_best_only": "True",
+    "seed": "2019",
+    "shuffle": "True",
+    "task": "binary_classification",
+    "test_data": "../data/dataset/test_data.csv",
+    "train_data": "../data/dataset/train_data.csv",
+    "use_features": "None",
+    "valid_data": "../data/dataset/valid_data.csv",
+    "verbose": "1"
+}
+2024-09-27 10:30:16,228 P32392 INFO Set up feature processor...
+2024-09-27 10:30:16,228 P32392 INFO Reading files: ../data/dataset/train_data.csv
+2024-09-27 10:30:16,229 P32392 INFO Preprocess feature columns...
+2024-09-27 10:30:16,248 P32392 INFO Fit feature processor...
+2024-09-27 10:30:16,248 P32392 INFO Processing column: {'name': 'C1', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:30:21,048 P32392 INFO Processing column: {'name': 'C2', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:30:25,800 P32392 INFO Processing column: {'name': 'C3', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:30:30,537 P32392 INFO Processing column: {'name': 'C4', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:30:35,253 P32392 INFO Processing column: {'name': 'C5', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:30:40,009 P32392 INFO Processing column: {'name': 'C6', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:30:44,780 P32392 INFO Processing column: {'name': 'C7', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:30:49,556 P32392 INFO Processing column: {'name': 'C8', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:30:54,277 P32392 INFO Processing column: {'name': 'C9', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:30:59,063 P32392 INFO Processing column: {'name': 'C10', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:31:03,803 P32392 INFO Processing column: {'name': 'C11', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:31:08,535 P32392 INFO Processing column: {'name': 'C12', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:31:13,246 P32392 INFO Processing column: {'name': 'C13', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:31:18,001 P32392 INFO Processing column: {'name': 'C14', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:31:22,750 P32392 INFO Processing column: {'name': 'C15', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:31:27,532 P32392 INFO Processing column: {'name': 'C16', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:31:32,223 P32392 INFO Processing column: {'name': 'C17', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:31:36,947 P32392 INFO Processing column: {'name': 'C18', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:31:41,656 P32392 INFO Processing column: {'name': 'C19', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:31:46,382 P32392 INFO Processing column: {'name': 'C20', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:31:51,139 P32392 INFO Processing column: {'name': 'C21', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:31:55,848 P32392 INFO Processing column: {'name': 'C22', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:32:00,585 P32392 INFO Processing column: {'name': 'C23', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:32:05,298 P32392 INFO Processing column: {'name': 'C24', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:32:10,022 P32392 INFO Processing column: {'name': 'C25', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:32:14,731 P32392 INFO Processing column: {'name': 'C26', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-27 10:32:19,437 P32392 INFO Set column index...
+2024-09-27 10:32:19,437 P32392 INFO Save feature_map to json: ../data/Criteo_x1\feature_map.json
+2024-09-27 10:32:19,438 P32392 INFO Pickle feature_encode: ../data/Criteo_x1\feature_processor.pkl
+2024-09-27 10:32:19,439 P32392 INFO Save feature_vocab to json: ../data/Criteo_x1\feature_vocab.json
+2024-09-27 10:32:19,448 P32392 INFO Set feature processor done.
+2024-09-27 10:32:19,454 P32392 INFO Transform feature columns to IDs...
+2024-09-27 10:32:19,464 P32392 INFO Saving data to parquet: ../data/Criteo_x1\train.parquet
+2024-09-27 10:32:19,537 P32392 INFO Reading files: ../data/dataset/valid_data.csv
+2024-09-27 10:32:19,537 P32392 INFO Preprocess feature columns...
+2024-09-27 10:32:19,549 P32392 INFO Transform feature columns to IDs...
+2024-09-27 10:32:19,561 P32392 INFO Saving data to parquet: ../data/Criteo_x1\valid.parquet
+2024-09-27 10:32:19,629 P32392 INFO Reading files: ../data/dataset/test_data.csv
+2024-09-27 10:32:19,630 P32392 INFO Preprocess feature columns...
+2024-09-27 10:32:19,641 P32392 INFO Transform feature columns to IDs...
+2024-09-27 10:32:19,652 P32392 INFO Saving data to parquet: ../data/Criteo_x1\test.parquet
+2024-09-27 10:32:19,717 P32392 INFO Transform csv data to parquet done.
+2024-09-27 10:32:19,717 P32392 INFO Load feature_map from json: ../data/Criteo_x1\feature_map.json
+2024-09-27 10:32:19,724 P32392 INFO Set column index...
+2024-09-27 10:32:19,724 P32392 INFO Feature specs: {
+    "C1": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 41}",
+    "C10": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 330}",
+    "C11": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 389}",
+    "C12": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 262}",
+    "C13": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 360}",
+    "C14": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 15}",
+    "C15": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 349}",
+    "C16": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 300}",
+    "C17": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 11}",
+    "C18": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 251}",
+    "C19": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 83}",
+    "C2": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 143}",
+    "C20": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 6}",
+    "C21": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 276}",
+    "C22": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 8}",
+    "C23": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 13}",
+    "C24": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 268}",
+    "C25": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 26}",
+    "C26": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 192}",
+    "C3": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 257}",
+    "C4": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 314}",
+    "C5": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 18}",
+    "C6": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 9}",
+    "C7": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 431}",
+    "C8": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 24}",
+    "C9": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 4}"
+}
+2024-09-27 10:32:19,724 P32392 INFO Loading datasets...
+2024-09-27 10:32:19,734 P32392 INFO Train samples: total/559, blocks/1
+2024-09-27 10:32:19,741 P32392 INFO Validation samples: total/559, blocks/1
+2024-09-27 10:32:19,741 P32392 INFO Loading train and validation data done.
+2024-09-27 10:32:20,723 P32392 INFO Start training: 5 batches/epoch
+2024-09-27 10:32:20,723 P32392 INFO ************ Epoch=1 start ************
+2024-09-27 10:32:25,858 P32392 INFO Train loss: 0.676985
+2024-09-27 10:32:25,858 P32392 INFO Evaluation @epoch 1 - batch 5: 
+2024-09-27 10:32:31,266 P32392 INFO [Metrics] AUC: 0.916763
+2024-09-27 10:32:31,266 P32392 INFO Save best model: monitor(max)=0.916763
+2024-09-27 10:32:31,651 P32392 INFO ************ Epoch=1 end ************
+2024-09-27 10:32:36,734 P32392 INFO Train loss: 0.624832
+2024-09-27 10:32:36,735 P32392 INFO Evaluation @epoch 2 - batch 5: 
+2024-09-27 10:32:42,210 P32392 INFO [Metrics] AUC: 0.956804
+2024-09-27 10:32:42,211 P32392 INFO Save best model: monitor(max)=0.956804
+2024-09-27 10:32:42,589 P32392 INFO ************ Epoch=2 end ************
+2024-09-27 10:32:47,689 P32392 INFO Train loss: 0.575014
+2024-09-27 10:32:47,690 P32392 INFO Evaluation @epoch 3 - batch 5: 
+2024-09-27 10:32:53,063 P32392 INFO [Metrics] AUC: 0.966130
+2024-09-27 10:32:53,064 P32392 INFO Save best model: monitor(max)=0.966130
+2024-09-27 10:32:53,440 P32392 INFO ************ Epoch=3 end ************
+2024-09-27 10:32:58,987 P32392 INFO Train loss: 0.523939
+2024-09-27 10:32:58,987 P32392 INFO Evaluation @epoch 4 - batch 5: 
+2024-09-27 10:33:04,640 P32392 INFO [Metrics] AUC: 0.971923
+2024-09-27 10:33:04,641 P32392 INFO Save best model: monitor(max)=0.971923
+2024-09-27 10:33:05,028 P32392 INFO ************ Epoch=4 end ************
+2024-09-27 10:33:10,129 P32392 INFO Train loss: 0.483009
+2024-09-27 10:33:10,130 P32392 INFO Evaluation @epoch 5 - batch 5: 
+2024-09-27 10:33:15,559 P32392 INFO [Metrics] AUC: 0.976249
+2024-09-27 10:33:15,559 P32392 INFO Save best model: monitor(max)=0.976249
+2024-09-27 10:33:15,931 P32392 INFO ************ Epoch=5 end ************
+2024-09-27 10:33:15,931 P32392 INFO Training finished.
+2024-09-27 10:33:15,932 P32392 INFO Load best model: C:\Users\yanghc03\Desktop\FuxiCTR-main\demo\checkpoints\Criteo_x1\LR.model
+2024-09-27 10:33:15,948 P32392 INFO ***** Validation evaluation *****
+2024-09-27 10:33:21,338 P32392 INFO [Metrics] logloss: 0.453165 - AUC: 0.976249
+2024-09-27 10:33:21,339 P32392 INFO ***** Test evaluation *****
+2024-09-27 10:33:21,339 P32392 INFO Loading datasets...
+2024-09-27 10:33:21,345 P32392 INFO Test samples: total/559, blocks/1
+2024-09-27 10:33:21,345 P32392 INFO Loading test data done.
+2024-09-27 10:33:26,751 P32392 INFO [Metrics] logloss: 0.453165 - AUC: 0.976249
