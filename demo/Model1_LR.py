@@ -26,7 +26,7 @@ from fuxictr.features import FeatureMap
 from fuxictr.pytorch.torch_utils import seed_everything
 from fuxictr.pytorch.dataloaders import RankDataLoader
 from fuxictr.preprocess import FeatureProcessor, build_dataset
-from model_zoo import DeepFM
+from model_zoo import LR
 
 if __name__ == '__main__':
     # Load params from config files
@@ -68,7 +68,7 @@ if __name__ == '__main__':
                                           shuffle=params['shuffle']).make_iterator()
 
     # Model initialization and fitting
-    model = DeepFM(feature_map, **params)
+    model = LR(feature_map, **params)
     model.fit(train_gen, validation_data=valid_gen, epochs=params['epochs'])
 
     logging.info('***** Validation evaluation *****')
