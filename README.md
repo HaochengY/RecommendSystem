@@ -7,23 +7,23 @@
 
 | # | Model Name | Original Paper Link | Code Location |
 |---|------------|---------------------|-------------------------|
-| 1 | 协同过滤 | [Link](#) | [Link](#) |
-| 2 | MF | [Link](#) | [Link](#) |
-| 3 | LR | [Link to Logistic Regression Paper](https://example.com/lr_paper) | [LR](https://github.com/yourusername/yourrepository/tree/main/lr_code) |
-| 4 | FM | [Link](#) | [Link](#) |
-| 5 | FFM | [Link](#) | [Link](#) |
-| 6 | DNN | [Link](#) | [Link](#) |
-| 7 | Deep Crossing | [Link](#) | [Link](#) |
-| 8 | PNN | [Link](#) | [Link](#) |
-| 9 | Wide&Deep | [Link](#) | [Link](#) |
-| 10 | DeepFM | [Link](#) | [Link](#) |
-| 11 | NFM | [Link](#) | [Link](#) |
-| 12 | AFM | [Link](#) | [Link](#) |
-| 13 | DIN | [Link](#) | [Link](#) |
-| 14 | DIEN | [Link](#) | [Link](#) |
-| 15 | ESMM (Shared Bottom) | [Link](#) | [Link](#) |
-| 16 | MMoE | [Link](#) | [Modeling Task Relationships in Multi-task Learning with Multi-Gate Mixture-of-Experts](#) |
-| 17 | PLE | [Link](#) | [Link](#) |
+| 1 | 协同过滤 | [Link](#) | - |
+| 2 | MF | [Link](#) | -|
+| 3 | LR | [Link to Logistic Regression Paper]() | [LR](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_1_LR.py) |
+| 4 | FM | [Link](#) |[FM](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_2_FM.py)  |
+| 5 | FFM | [Link](#) | [FFM](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_3_FFM.py)  |
+| 6 | DNN | [Link](#) | [DNN](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_4_DNN.py)  |
+| 7 | Deep Crossing | [Link](#) | [Deep Crossing](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_5_Deepcrossing.py)|
+| 8 | PNN | [Link](#) | [PNN](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_6_PNN.py)  |
+| 9 | Wide&Deep | [Link](#) | - |
+| 10 | DeepFM | [Link](#) |[DeepFM](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_7_DeepFM.py) |
+| 11 | NFM | [Link](#) | [NFM](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_8_NFM.py) |
+| 12 | AFM | [Link](#) | [AFM](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_0_AFM.py)  |
+| 13 | DIN | [Link](#) | [DIN](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_10_DIN.py)  |
+| 14 | DIEN | [Link](#) | [DIEN](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_11_DIEN.py)  |
+| 15 | ESMM (Shared Bottom) | [Link](#) | -|
+| 16 | MMoE | [Link](#) | - |
+| 17 | PLE | [Link](#) | - |
 
 ## 1. 推荐系统基本链路
 
