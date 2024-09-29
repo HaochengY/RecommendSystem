@@ -4,22 +4,25 @@
 1. 推荐系统的链路，主要介绍双塔模型，粗排模型
 2. 精排模型，基于Huawei贡献的开源推荐系统包FuxiCTR https://github.com/reczoo/FuxiCTR) 。在此基础上，我使用开源数据Criteo_x1（https://huggingface.co/datasets/reczoo/Criteo_x1/blob/main/README.md）
 作为训练，测试数据。按时间顺序和分支归纳并比较了经典推荐系统的算法。
-   1. 协同过滤 *
-   2. MF *
-   3. FM
-   4. FFM
-   5. DNN
-   6. Deep Crossing
-   7. PNN
-   8. Wide&Deep
-   9. DeepFM
-   10. NFM
-   11. AFM
-   12. DIN
-   13. DIEN
-   14. ESMM (Shared Bottom) *
-   15. MMoE *
-   16. PLE *
+
+| # | Model Name | Original Paper Link | Code Location in GitHub |
+|---|------------|---------------------|-------------------------|
+| 1 | 协同过滤 | [Link](#) | [Link](#) |
+| 2 | MF | [Link](#) | [Link](#) |
+| 3 | FM | [Link](#) | [Link](#) |
+| 4 | FFM | [Link](#) | [Link](#) |
+| 5 | DNN | [Link](#) | [Link](#) |
+| 6 | Deep Crossing | [Link](#) | [Link](#) |
+| 7 | PNN | [Link](#) | [Link](#) |
+| 8 | Wide&Deep | [Link](#) | [Link](#) |
+| 9 | DeepFM | [Link](#) | [Link](#) |
+| 10 | NFM | [Link](#) | [Link](#) |
+| 11 | AFM | [Link](#) | [Link](#) |
+| 12 | DIN | [Link](#) | [Link](#) |
+| 13 | DIEN | [Link](#) | [Link](#) |
+| 14 | ESMM (Shared Bottom) | [Link](#) | [Link](#) |
+| 15 | MMoE | [Link](#) | [Modeling Task Relationships in Multi-task Learning with Multi-Gate Mixture-of-Experts](#) |
+| 16 | PLE | [Link](#) | [Link](#) |
 
 ## 1. 推荐系统基本链路
 
