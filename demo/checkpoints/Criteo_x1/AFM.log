@@ -1,0 +1,81 @@
+2024-09-28 12:30:37,918 P92208 INFO FuxiCTR version: 2.3.2
+2024-09-28 12:30:37,919 P92208 INFO Params: {
+    "attention_dim": "8",
+    "attention_dropout": "[0, 0]",
+    "batch_size": "128",
+    "data_format": "csv",
+    "data_root": "../data/",
+    "dataset_id": "Criteo_x1",
+    "debug_mode": "False",
+    "early_stop_patience": "2",
+    "embedding_dim": "4",
+    "embedding_regularizer": "1e-08",
+    "epochs": "1",
+    "eval_steps": "None",
+    "feature_cols": "[{'name': ['C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9', 'C10', 'C11', 'C12', 'C13', 'C14', 'C15', 'C16', 'C17', 'C18', 'C19', 'C20', 'C21', 'C22', 'C23', 'C24', 'C25', 'C26'], 'active': True, 'dtype': 'str', 'type': 'categorical'}]",
+    "feature_config": "None",
+    "feature_specs": "None",
+    "group_id": "None",
+    "label_col": "{'name': 'label', 'dtype': 'float'}",
+    "learning_rate": "0.001",
+    "loss": "binary_crossentropy",
+    "metrics": "['logloss', 'AUC']",
+    "min_categr_count": "1",
+    "model": "AFM",
+    "model_id": "AFM",
+    "model_root": "./checkpoints/",
+    "monitor": "AUC",
+    "monitor_mode": "max",
+    "net_regularizer": "0",
+    "num_workers": "3",
+    "optimizer": "adam",
+    "pickle_feature_encoder": "True",
+    "save_best_only": "True",
+    "seed": "2019",
+    "shuffle": "True",
+    "task": "binary_classification",
+    "test_data": "../data/dataset/test_data.csv",
+    "train_data": "../data/dataset/train_data.csv",
+    "use_attention": "True",
+    "use_features": "None",
+    "valid_data": "../data/dataset/valid_data.csv",
+    "verbose": "1"
+}
+2024-09-28 12:30:37,923 P92208 INFO Set up feature processor...
+2024-09-28 12:30:37,924 P92208 WARNING Skip rebuilding ../data/Criteo_x1/feature_map.json. Please delete it manually if rebuilding is required.
+2024-09-28 12:30:37,925 P92208 INFO Load feature_map from json: ../data/Criteo_x1/feature_map.json
+2024-09-28 12:30:37,926 P92208 INFO Set column index...
+2024-09-28 12:30:37,927 P92208 INFO Feature specs: {
+    "C1": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 41}",
+    "C10": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 330}",
+    "C11": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 389}",
+    "C12": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 262}",
+    "C13": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 360}",
+    "C14": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 15}",
+    "C15": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 349}",
+    "C16": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 300}",
+    "C17": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 11}",
+    "C18": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 251}",
+    "C19": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 83}",
+    "C2": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 143}",
+    "C20": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 6}",
+    "C21": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 276}",
+    "C22": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 8}",
+    "C23": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 13}",
+    "C24": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 268}",
+    "C25": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 26}",
+    "C26": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 192}",
+    "C3": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 257}",
+    "C4": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 314}",
+    "C5": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 18}",
+    "C6": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 9}",
+    "C7": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 431}",
+    "C8": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 24}",
+    "C9": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 4}"
+}
+2024-09-28 12:30:37,927 P92208 INFO Loading datasets...
+2024-09-28 12:30:37,940 P92208 INFO Train samples: total/559, blocks/1
+2024-09-28 12:30:37,946 P92208 INFO Validation samples: total/559, blocks/1
+2024-09-28 12:30:37,946 P92208 INFO Loading train and validation data done.
+2024-09-28 12:30:41,339 P92208 INFO Start training: 5 batches/epoch
+2024-09-28 12:30:41,339 P92208 INFO ************ Epoch=1 start ************

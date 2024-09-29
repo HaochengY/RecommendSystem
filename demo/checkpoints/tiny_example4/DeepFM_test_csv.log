@@ -1,0 +1,116 @@
+2024-09-28 10:21:24,177 P89763 INFO FuxiCTR version: 2.3.2
+2024-09-28 10:21:24,178 P89763 INFO Params: {
+    "batch_norm": "False",
+    "batch_size": "128",
+    "data_format": "csv",
+    "data_root": "../data/",
+    "dataset_id": "tiny_example4",
+    "debug_mode": "False",
+    "early_stop_patience": "2",
+    "embedding_dim": "4",
+    "embedding_regularizer": "1e-08",
+    "epochs": "1",
+    "eval_steps": "None",
+    "feature_cols": "[{'name': ['userid', 'adgroup_id', 'pid', 'cate_id', 'campaign_id', 'customer', 'brand', 'cms_segid', 'cms_group_id', 'final_gender_code', 'age_level', 'pvalue_level', 'shopping_level', 'occupation'], 'active': True, 'dtype': 'str', 'type': 'categorical'}]",
+    "feature_config": "None",
+    "feature_specs": "None",
+    "group_id": "None",
+    "hidden_activations": "relu",
+    "hidden_units": "[64, 32]",
+    "label_col": "{'name': 'clk', 'dtype': 'float'}",
+    "learning_rate": "0.001",
+    "loss": "binary_crossentropy",
+    "metrics": "['logloss', 'AUC']",
+    "min_categr_count": "1",
+    "model": "DeepFM",
+    "model_id": "DeepFM_test_csv",
+    "model_root": "./checkpoints/",
+    "monitor": "AUC",
+    "monitor_mode": "max",
+    "net_dropout": "0",
+    "net_regularizer": "0",
+    "num_workers": "3",
+    "optimizer": "adam",
+    "pickle_feature_encoder": "True",
+    "save_best_only": "True",
+    "seed": "2019",
+    "shuffle": "True",
+    "task": "binary_classification",
+    "test_data": "../data/tiny_csv/test_sample.csv",
+    "train_data": "../data/tiny_csv/train_sample.csv",
+    "use_features": "None",
+    "valid_data": "../data/tiny_csv/valid_sample.csv",
+    "verbose": "1"
+}
+2024-09-28 10:21:24,181 P89763 INFO Set up feature processor...
+2024-09-28 10:21:24,181 P89763 INFO Reading files: ../data/tiny_csv/train_sample.csv
+2024-09-28 10:21:24,189 P89763 INFO Preprocess feature columns...
+2024-09-28 10:21:24,220 P89763 INFO Fit feature processor...
+2024-09-28 10:21:24,221 P89763 INFO Processing column: {'name': 'userid', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-28 10:21:31,198 P89763 INFO Processing column: {'name': 'adgroup_id', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-28 10:21:37,103 P89763 INFO Processing column: {'name': 'pid', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-28 10:21:45,094 P89763 INFO Processing column: {'name': 'cate_id', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-28 10:21:54,895 P89763 INFO Processing column: {'name': 'campaign_id', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-28 10:22:00,912 P89763 INFO Processing column: {'name': 'customer', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-28 10:22:06,461 P89763 INFO Processing column: {'name': 'brand', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-28 10:22:12,027 P89763 INFO Processing column: {'name': 'cms_segid', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-28 10:22:17,642 P89763 INFO Processing column: {'name': 'cms_group_id', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-28 10:22:23,313 P89763 INFO Processing column: {'name': 'final_gender_code', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-28 10:22:28,749 P89763 INFO Processing column: {'name': 'age_level', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-28 10:22:34,188 P89763 INFO Processing column: {'name': 'pvalue_level', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-28 10:22:39,902 P89763 INFO Processing column: {'name': 'shopping_level', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-28 10:22:47,503 P89763 INFO Processing column: {'name': 'occupation', 'active': True, 'dtype': 'str', 'type': 'categorical'}
+2024-09-28 10:22:54,189 P89763 INFO Set column index...
+2024-09-28 10:22:54,190 P89763 INFO Save feature_map to json: ../data/tiny_example4/feature_map.json
+2024-09-28 10:22:54,192 P89763 INFO Pickle feature_encode: ../data/tiny_example4/feature_processor.pkl
+2024-09-28 10:22:54,194 P89763 INFO Save feature_vocab to json: ../data/tiny_example4/feature_vocab.json
+2024-09-28 10:22:54,195 P89763 INFO Set feature processor done.
+2024-09-28 10:22:54,240 P89763 INFO Transform feature columns to IDs...
+2024-09-28 10:22:54,253 P89763 INFO Saving data to parquet: ../data/tiny_example4/train.parquet
+2024-09-28 10:23:02,275 P89763 INFO Reading files: ../data/tiny_csv/valid_sample.csv
+2024-09-28 10:23:02,276 P89763 INFO Preprocess feature columns...
+2024-09-28 10:23:02,284 P89763 INFO Transform feature columns to IDs...
+2024-09-28 10:23:02,289 P89763 INFO Saving data to parquet: ../data/tiny_example4/valid.parquet
+2024-09-28 10:23:02,394 P89763 INFO Reading files: ../data/tiny_csv/test_sample.csv
+2024-09-28 10:23:02,399 P89763 INFO Preprocess feature columns...
+2024-09-28 10:23:02,419 P89763 INFO Transform feature columns to IDs...
+2024-09-28 10:23:02,428 P89763 INFO Saving data to parquet: ../data/tiny_example4/test.parquet
+2024-09-28 10:23:02,577 P89763 INFO Transform csv data to parquet done.
+2024-09-28 10:23:02,577 P89763 INFO Load feature_map from json: ../data/tiny_example4/feature_map.json
+2024-09-28 10:23:02,578 P89763 INFO Set column index...
+2024-09-28 10:23:02,578 P89763 INFO Feature specs: {
+    "adgroup_id": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 96}",
+    "age_level": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 7}",
+    "brand": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 67}",
+    "campaign_id": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 99}",
+    "cate_id": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 49}",
+    "cms_group_id": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 11}",
+    "cms_segid": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 11}",
+    "customer": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 98}",
+    "final_gender_code": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 4}",
+    "occupation": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 4}",
+    "pid": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 4}",
+    "pvalue_level": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 4}",
+    "shopping_level": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 5}",
+    "userid": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 26}"
+}
+2024-09-28 10:23:02,579 P89763 INFO Loading datasets...
+2024-09-28 10:23:02,611 P89763 INFO Train samples: total/100, blocks/1
+2024-09-28 10:23:02,613 P89763 INFO Validation samples: total/100, blocks/1
+2024-09-28 10:23:02,613 P89763 INFO Loading train and validation data done.
+2024-09-28 10:23:04,652 P89763 INFO Start training: 1 batches/epoch
+2024-09-28 10:23:04,653 P89763 INFO ************ Epoch=1 start ************
+2024-09-28 10:23:15,485 P89763 INFO Train loss: 0.693102
+2024-09-28 10:23:15,486 P89763 INFO Evaluation @epoch 1 - batch 1: 
+2024-09-28 10:23:27,059 P89763 INFO [Metrics] AUC: 1.000000
+2024-09-28 10:23:27,060 P89763 INFO Save best model: monitor(max)=1.000000
+2024-09-28 10:23:32,076 P89763 INFO ************ Epoch=1 end ************
+2024-09-28 10:23:32,076 P89763 INFO Training finished.
+2024-09-28 10:23:32,076 P89763 INFO Load best model: /Users/yhc/Desktop/FuxiCTR-main/demo/checkpoints/tiny_example4/DeepFM_test_csv.model
+2024-09-28 10:23:32,089 P89763 INFO ***** Validation evaluation *****
+2024-09-28 10:23:45,086 P89763 INFO [Metrics] logloss: 0.680108 - AUC: 1.000000
+2024-09-28 10:23:45,086 P89763 INFO ***** Test evaluation *****
+2024-09-28 10:23:45,087 P89763 INFO Loading datasets...
+2024-09-28 10:23:45,097 P89763 INFO Test samples: total/100, blocks/1
+2024-09-28 10:23:45,097 P89763 INFO Loading test data done.
+2024-09-28 10:23:58,739 P89763 INFO [Metrics] logloss: 0.680108 - AUC: 1.000000
