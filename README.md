@@ -1,9 +1,10 @@
 # RecommendSystem
 
 本文档描述了广告/推荐系统的完整链路分析：
-1. 推荐系统的链路，主要介绍双塔模型，粗排模型
-2. 精排模型，基于Huawei贡献的开源推荐系统包FuxiCTR https://github.com/reczoo/FuxiCTR) 。在此基础上，我使用开源数据Criteo_x1（https://huggingface.co/datasets/reczoo/Criteo_x1/blob/main/README.md）
-作为训练，测试数据。按时间顺序和分支归纳并比较了经典推荐系统的算法。
+1. 推荐系统的链路：主要介绍双塔模型，粗排模型，精排模型在第三部分详细介绍
+2. 工业界部署的实操：包括分布式数据库，从存储到部署的过程。
+3. 精排模型，基于Huawei贡献的开源推荐系统包FuxiCTR https://github.com/reczoo/FuxiCTR) 。在此基础上，我使用开源数据Criteo_x1（https://huggingface.co/datasets/reczoo/Criteo_x1/blob/main/README.md）
+作为训练，测试数据。按时间顺序和分支归纳并比较了经典推荐系统的算法：
 
 | # | Model Name | Original Paper Link | Code Location |
 |---|------------|---------------------|-------------------------|
@@ -26,6 +27,8 @@
 | 15 | ESMM (Shared Bottom) | [Entire Space Multi-Task Model: An Effective Approach for Estimating Post-Click Conversion Rate](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Alibaba_ESMM.pdf) | - |
 | 16 | MMoE | [Modeling Task Relationships in Multi-task Learning with Multi-gate Mixture-of-Experts](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Google_MMoE.pdf) | - |
 | 17 | PLE | [Progressive Layered Extraction (PLE): A Novel Multi-Task Learning (MTL) Model for Personalized Recommendations](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Tencent_PLE.pdf) | - |
+
+
 
 ## 1. 推荐系统基本链路
 
@@ -80,6 +83,19 @@
 
 这里比较直观的生成多样性的方法就是通过为item生成不同的标签，通过标签可以显著地区分开样本。然而标注标签其实需要比较多的操作，对于视频或笔记类item，比较直观的是通过其图文来进行生成label。
 
+## 2. 推荐系统与大数据工具部署的结合
+
+本节将推荐系统按照实时性要求的区别分为
+1. 高实时性：例如视频，电商推荐系统
+2. 低实时性：广告推荐系统
+
+主要步骤分为：
+1. 将数据通过埋点处获得的数据通过kafka获取，在Flink处进行系列操作生成实时的用户向量。接下来一支落入HDFS系统，另一支进入redis，这里获得的事实时向量，可能包括实时兴趣，上下文信息，等等；另一支从hdfs中提前输入到redis，然后将二者拼接后输入用户塔模型生成用户向量。redis里储存了item向量，这样就可以进行最近邻匹配去寻找比较相似的物品，这样得到的就是召回模型。
+2. 对召回的结果进行排序，即可获得排序后的模型
+3. 重排：推荐系统中可能会使用多样性来再加工一下，在广告系统中，有些广告商指明要只投一些广告，或根据产品业务线规定，只能投指定的内容。
+4. 返回给客户端。
+
+   
 ## 序1 FuxiCTR
 
 FuxiCTR 内部的函数封装的非常好，在使用其推荐函数前，我们必须对其封装的逻辑进行理解，这样才能更好地分析算法的底层逻辑，以用于后续的调优和架构改进。
