@@ -8,21 +8,22 @@
 | # | Model Name | Original Paper Link | Code Location |
 |---|------------|---------------------|-------------------------|
 | 1 | 协同过滤 | [Link](#) | [Link](#) |
-| 2 | MF | [Link](#) | [Link]() |
-| 3 | FM | [Link](#) | [FM](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_2_FM.py) |
-| 4 | FFM | [Link](#) | [Link](#) |
-| 5 | DNN | [Link](#) | [Link](#) |
-| 6 | Deep Crossing | [Link](#) | [Link](#) |
-| 7 | PNN | [Link](#) | [Link](#) |
-| 8 | Wide&Deep | [Link](#) | [Link](#) |
-| 9 | DeepFM | [Link](#) | [Link](#) |
-| 10 | NFM | [Link](#) | [Link](#) |
-| 11 | AFM | [Link](#) | [Link](#) |
-| 12 | DIN | [Link](#) | [Link](#) |
-| 13 | DIEN | [Link](#) | [Link](#) |
-| 14 | ESMM (Shared Bottom) | [Link](#) | [Link](#) |
-| 15 | MMoE | [Link](#) | [Modeling Task Relationships in Multi-task Learning with Multi-Gate Mixture-of-Experts](#) |
-| 16 | PLE | [Link](#) | [Link](#) |
+| 2 | MF | [Link](#) | [Link](#) |
+| 3 | LR | [Link to Logistic Regression Paper](https://example.com/lr_paper) | [LR](https://github.com/yourusername/yourrepository/tree/main/lr_code) |
+| 4 | FM | [Link](#) | [Link](#) |
+| 5 | FFM | [Link](#) | [Link](#) |
+| 6 | DNN | [Link](#) | [Link](#) |
+| 7 | Deep Crossing | [Link](#) | [Link](#) |
+| 8 | PNN | [Link](#) | [Link](#) |
+| 9 | Wide&Deep | [Link](#) | [Link](#) |
+| 10 | DeepFM | [Link](#) | [Link](#) |
+| 11 | NFM | [Link](#) | [Link](#) |
+| 12 | AFM | [Link](#) | [Link](#) |
+| 13 | DIN | [Link](#) | [Link](#) |
+| 14 | DIEN | [Link](#) | [Link](#) |
+| 15 | ESMM (Shared Bottom) | [Link](#) | [Link](#) |
+| 16 | MMoE | [Link](#) | [Modeling Task Relationships in Multi-task Learning with Multi-Gate Mixture-of-Experts](#) |
+| 17 | PLE | [Link](#) | [Link](#) |
 
 ## 1. 推荐系统基本链路
 
