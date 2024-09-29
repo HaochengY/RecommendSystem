@@ -4,6 +4,22 @@
 1. 推荐系统的链路，主要介绍双塔模型，粗排模型
 2. 精排模型，基于Huawei贡献的开源推荐系统包FuxiCTR https://github.com/reczoo/FuxiCTR) 。在此基础上，我使用开源数据Criteo_x1（https://huggingface.co/datasets/reczoo/Criteo_x1/blob/main/README.md）
 作为训练，测试数据。按时间顺序和分支归纳并比较了经典推荐系统的算法。
+   1. 协同过滤 *
+   2. MF *
+   3. FM
+   4. FFM
+   5. DNN
+   6. Deep Crossing
+   7. PNN
+   8. Wide&Deep
+   9. DeepFM
+   10. NFM
+   11. AFM
+   12. DIN
+   13. DIEN
+   14. ESMM (Shared Bottom) *
+   15. MMoE *
+   16. PLE *
 
 ## 1. 推荐系统基本链路
 
