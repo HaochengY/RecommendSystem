@@ -7,8 +7,8 @@
 
 | # | Model Name | Original Paper Link | Code Location |
 |---|------------|---------------------|-------------------------|
-| 0-1 | 双塔模型 |YouTube对热门物品打压的双塔模型:[Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations](https://github.com/HaochengY/RecommendSystem/blob/main/Document/YouTube双塔模型.pdf) | - |
-| 0-2 | 双塔模型 |基于自监督学习的对冷门物品的标注: [Self-supervised Learning for Large-scale Item Recommendations](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Google_SSL双塔模型) | - |
+| 0 | 双塔模型 |YouTube对热门物品打压的双塔模型:[Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations](https://github.com/HaochengY/RecommendSystem/blob/main/Document/YouTube双塔模型.pdf) | - |
+| 0 | 双塔模型 |基于自监督学习的对冷门物品的标注: [Self-supervised Learning for Large-scale Item Recommendations](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Google_SSL双塔模型) | - |
 | 1 | 协同过滤 | - | - |
 | 2 | MF | - | -|
 | 3 | LR | [Predicting Clicks: Estimating the Click-Through Rate for New Ads](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Microsoft_LR.pdf) | [LR](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_1_LR.py) |
@@ -17,7 +17,7 @@
 | 6 | DNN | [Deep Neural Networks for YouTube Recommendations](https://github.com/HaochengY/RecommendSystem/blob/main/Document/YouTube_DNN.pdf)| [DNN](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_4_DNN.py)  |
 | 7 | Deep Crossing | [Deep Crossing: Web-Scale Modeling without Manually Crafted Combinatorial Features](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Microsoft_DeepCrossing.pdf) | [Deep Crossing](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_5_Deepcrossing.py)|
 | 8 | PNN | [Product-based Neural Networks for User Response Prediction](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Alibaba_AFM.pdf) | [PNN](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_6_PNN.py)  |
-| 9 | Wide&Deep | [Wide & Deep Learning for Recommender Systems](https://github.com/HaochengY/RecommendSystem/blob/main/Document/google_Wide&Deep.pdf) | - |
+| 9 | Wide&Deep | [Wide & Deep Learning for Recommender Systems](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Google_Wide&Deep.pdf) | - |
 | 10 | DeepFM | [DeepFM: A Factorization-Machine based Neural Network for CTR Prediction](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Huawei_DeepFM.pdf) |[DeepFM](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_7_DeepFM.py) |
 | 11 | NFM | [Neural Factorization Machines for Sparse Predictive Analytics](https://github.com/HaochengY/RecommendSystem/blob/main/Document/NFM.pdf) | [NFM](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_8_NFM.py) |
 | 12 | AFM | [Attentional Factorization Machines: Learning the Weight of Feature Interactions via Attention Networks](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Alibaba_AFM.pdf) | [AFM](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_0_AFM.py)  |
