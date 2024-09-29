@@ -5,11 +5,11 @@
 2. 精排模型，基于Huawei贡献的开源推荐系统包FuxiCTR https://github.com/reczoo/FuxiCTR) 。在此基础上，我使用开源数据Criteo_x1（https://huggingface.co/datasets/reczoo/Criteo_x1/blob/main/README.md）
 作为训练，测试数据。按时间顺序和分支归纳并比较了经典推荐系统的算法。
 
-| # | Model Name | Original Paper Link | Code Location in GitHub |
+| # | Model Name | Original Paper Link | Code Location |
 |---|------------|---------------------|-------------------------|
 | 1 | 协同过滤 | [Link](#) | [Link](#) |
-| 2 | MF | [Link](#) | [Link](#) |
-| 3 | FM | [Link](#) | [Link](#) |
+| 2 | MF | [Link](#) | [Link]() |
+| 3 | FM | [Link](#) | [FM](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_2_FM.py) |
 | 4 | FFM | [Link](#) | [Link](#) |
 | 5 | DNN | [Link](#) | [Link](#) |
 | 6 | Deep Crossing | [Link](#) | [Link](#) |
