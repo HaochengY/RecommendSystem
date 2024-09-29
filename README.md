@@ -7,7 +7,8 @@
 
 | # | Model Name | Original Paper Link | Code Location |
 |---|------------|---------------------|-------------------------|
-| 0 | 双塔模型 |YouTube对热门物品打压的双塔模型:[Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations](https://github.com/HaochengY/RecommendSystem/blob/main/Document/YouTube双塔模型.pdf) \n 基于自监督学习的对冷门物品的标注: [Self-supervised Learning for Large-scale Item Recommendations](Google_SSL双塔模型) | - |
+| 0-1 | 双塔模型 |YouTube对热门物品打压的双塔模型:[Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations](https://github.com/HaochengY/RecommendSystem/blob/main/Document/YouTube双塔模型.pdf) | - |
+| 0-2 | 双塔模型 |基于自监督学习的对冷门物品的标注: [Self-supervised Learning for Large-scale Item Recommendations](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Google_SSL双塔模型) | - |
 | 1 | 协同过滤 | - | - |
 | 2 | MF | - | -|
 | 3 | LR | [Predicting Clicks: Estimating the Click-Through Rate for New Ads](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Microsoft_LR.pdf) | [LR](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_1_LR.py) |
