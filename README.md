@@ -7,6 +7,8 @@
 
 | # | Model Name | Original Paper Link | Code Location |
 |---|------------|---------------------|-------------------------|
+| 0 | 双塔模型 | [YouTube对热门物品打压的双塔模型]()
+[基于自监督学习的对冷门物品的标注]() | - |
 | 1 | 协同过滤 | [Link](#) | - |
 | 2 | MF | [Link](#) | -|
 | 3 | LR | [Link to Logistic Regression Paper]() | [LR](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_1_LR.py) |
