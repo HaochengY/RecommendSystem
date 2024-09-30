@@ -2,7 +2,7 @@
 
 本文档描述了广告/推荐系统的完整链路分析：
 1. 推荐系统的链路：主要介绍双塔模型，粗排模型，精排模型在第三部分详细介绍
-2. 工业界部署的实操：包括分布式数据库，从存储到部署的过程。
+2. 工业界部署的实操：包括从web端发起请求后，客户端从Kafka来的数据在Flink平台的处理，以及HDFS方向来的CTR，标签模型在redis内存数据库里的交互（召回），以及后续排序模型的部署，从而返回客户端推荐结果的全链路，以及相应的大数据技术。
 3. 精排模型，基于Huawei贡献的开源推荐系统包FuxiCTR https://github.com/reczoo/FuxiCTR) 。在此基础上，我使用开源数据Criteo_x1（https://huggingface.co/datasets/reczoo/Criteo_x1/blob/main/README.md）
 作为训练，测试数据。按时间顺序和分支归纳并比较了经典推荐系统的算法：
 
