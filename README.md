@@ -8,6 +8,7 @@
 
 | # | Model Name | Original Paper Link | Code Location |
 |---|------------|---------------------|-------------------------|
+| 0 | 双塔模型 |DSSM 双塔模型:[Learning Semantic Representations Using Convolutional Neural Networks for Web Search](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Microsoft_DSSM双塔模型.pdf) | - |
 | 0 | 双塔模型 |YouTube对热门物品打压的双塔模型:[Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations](https://github.com/HaochengY/RecommendSystem/blob/main/Document/YouTube双塔模型.pdf) | - |
 | 0 | 双塔模型 |基于自监督学习的对冷门物品的标注: [Self-supervised Learning for Large-scale Item Recommendations](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Google_SSL双塔模型) | - |
 | 1 | 协同过滤 | - | - |
