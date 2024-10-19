@@ -6,11 +6,13 @@
 3. 精排模型，基于Huawei贡献的开源推荐系统包[FuxiCTR](https://github.com/reczoo/FuxiCTR) 。在此基础上，我使用开源数据[Criteo_x1](https://huggingface.co/datasets/reczoo/Criteo_x1/blob/main/README.md)
 作为训练，测试数据。按时间顺序和分支归纳并比较了经典推荐系统的算法：
 
-| Model Name |  Code Location |
-|------------|-------------------------|
-| Logistic Regression  | [LR](https://github.com/HaochengY/RecommendSystem/tree/main/models/LR) |
-
-
+| Index | Model Name    | Code Location                                                              |
+|-------|---------------|----------------------------------------------------------------------------|
+| 1     | LR            | https://github.com/HaochengY/RecommendSystem/tree/main/models/LR           |
+| 2     | FM            | https://github.com/HaochengY/RecommendSystem/tree/main/models/FM           |
+| 3     | FFM           | https://github.com/HaochengY/RecommendSystem/tree/main/models/FFM          |
+| 4     | DNN           | https://github.com/HaochengY/RecommendSystem/tree/main/models/DNN          |
+| 5     | Deep Crossing | https://github.com/HaochengY/RecommendSystem/tree/main/models/DeepCrossing |
 
 
 ## 1. 推荐系统基本链路
