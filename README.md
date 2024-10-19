@@ -8,7 +8,7 @@
 
 | Model Name |  Code Location |
 |------------|-------------------------|
-| Logistic Regression  | - |
+| Logistic Regression  | [LR](https://github.com/HaochengY/RecommendSystem/tree/main/models/LR) |
 
 
 
