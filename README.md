@@ -6,28 +6,10 @@
 3. 精排模型，基于Huawei贡献的开源推荐系统包[FuxiCTR](https://github.com/reczoo/FuxiCTR) 。在此基础上，我使用开源数据[Criteo_x1](https://huggingface.co/datasets/reczoo/Criteo_x1/blob/main/README.md)
 作为训练，测试数据。按时间顺序和分支归纳并比较了经典推荐系统的算法：
 
-| # | Model Name | Original Paper Link | Code Location |
-|---|------------|---------------------|-------------------------|
-| 0 | 双塔模型 |DSSM 双塔模型:[Learning Semantic Representations Using Convolutional Neural Networks for Web Search](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Microsoft_DSSM双塔模型.pdf) | - |
-| 0 | 双塔模型 |YouTube对热门物品打压的双塔模型:[Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations](https://github.com/HaochengY/RecommendSystem/blob/main/Document/YouTube双塔模型.pdf) | - |
-| 0 | 双塔模型 |基于自监督学习的对冷门物品的标注: [Self-supervised Learning for Large-scale Item Recommendations](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Google_SSL双塔模型) | - |
-| 1 | 协同过滤 | - | - |
-| 2 | MF | - | -|
-| 3 | LR | [Predicting Clicks: Estimating the Click-Through Rate for New Ads](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Microsoft_LR.pdf) | [LR](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_1_LR.py) |
-| 4 | FM | [Factorization Machines](https://github.com/HaochengY/RecommendSystem/blob/main/Document/FM.pdf)|[FM](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_2_FM.py)  |
-| 5 | FFM | [Field-aware Factorization Machines for CTR Prediction](https://github.com/HaochengY/RecommendSystem/blob/main/Document/FFM.pdf) | [FFM](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_3_FFM.py)  |
-| 6 | DNN | [Deep Neural Networks for YouTube Recommendations](https://github.com/HaochengY/RecommendSystem/blob/main/Document/YouTube_DNN.pdf)| [DNN](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_4_DNN.py)  |
-| 7 | Deep Crossing | [Deep Crossing: Web-Scale Modeling without Manually Crafted Combinatorial Features](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Microsoft_DeepCrossing.pdf) | [Deep Crossing](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_5_Deepcrossing.py)|
-| 8 | PNN | [Product-based Neural Networks for User Response Prediction](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Alibaba_AFM.pdf) | [PNN](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_6_PNN.py)  |
-| 9 | Wide&Deep | [Wide & Deep Learning for Recommender Systems](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Google_Wide&Deep.pdf) | - |
-| 10 | DeepFM | [DeepFM: A Factorization-Machine based Neural Network for CTR Prediction](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Huawei_DeepFM.pdf) |[DeepFM](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_7_DeepFM.py) |
-| 11 | NFM | [Neural Factorization Machines for Sparse Predictive Analytics](https://github.com/HaochengY/RecommendSystem/blob/main/Document/NFM.pdf) | [NFM](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_8_NFM.py) |
-| 12 | AFM | [Attentional Factorization Machines: Learning the Weight of Feature Interactions via Attention Networks](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Alibaba_AFM.pdf) | [AFM](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_0_AFM.py)  |
-| 13 | DIN | [Deep Interest Network for Click-Through Rate Prediction](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Alibaba_DIN.pdf) | [DIN](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_10_DIN.py)  |
-| 14 | DIEN | [Deep Interest Evolution Network for Click-Through Rate Prediction](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Alibaba_DIEN.pdf)| [DIEN](https://github.com/HaochengY/RecommendSystem/blob/main/demo/Model_11_DIEN.py)  |
-| 15 | ESMM (Shared Bottom) | [Entire Space Multi-Task Model: An Effective Approach for Estimating Post-Click Conversion Rate](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Alibaba_ESMM.pdf) | - |
-| 16 | MMoE | [Modeling Task Relationships in Multi-task Learning with Multi-gate Mixture-of-Experts](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Google_MMoE.pdf) | - |
-| 17 | PLE | [Progressive Layered Extraction (PLE): A Novel Multi-Task Learning (MTL) Model for Personalized Recommendations](https://github.com/HaochengY/RecommendSystem/blob/main/Document/Tencent_PLE.pdf) | - |
+| Model Name |  Code Location |
+|------------|-------------------------|
+| Logistic Regression  | - |
+
 
 
 
