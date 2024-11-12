@@ -18,17 +18,16 @@ import torch.multiprocessing as mp
 
 class DataRecorder:
     def __init__(self,
-                 dataset_name="Company", embedding_dim=12, batch_size=256, down_sample=5):
+                 dataset_name="Criteo_x1", embedding_dim=12, batch_size=256):
         mp.set_start_method("spawn", force=True)
         self.random_all(42)  # 设置一切随机数种为 42
         # parquet_path_windows = "/Users/yhc/Downloads/Criteo_x1/test.parquet"
         # 线下测试环境
-        self.down_sample = down_sample
-        self.existed_datarecoder_path = f"/home/yanghc03/pkl_data/emb_{embedding_dim}/downsample_{down_sample}/datarecorder.pkl"
-        self.parquet_path_linux = f"/home/yanghc03/python/RecommendSystem/dataset/hdfs_data/downsample_{down_sample}.parquet"
+        self.existed_datarecoder_path = f"/home/yanghc03/dataset/{dataset_name}/emb_{embedding_dim}.pkl"
+        self.parquet_path_linux = f"/home/yanghc03/dataset/{dataset_name}/data.parquet"
         self.dataset_name = dataset_name
         self.parquet_table = None
-        self.label_name = "is_convert"
+        self.label_name = "label"
         self.encoder_type = "labelencoder"
         self.batch_size = batch_size
         self.embedding_dim = embedding_dim
