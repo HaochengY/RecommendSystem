@@ -1,6 +1,7 @@
 from concurrent.futures import ProcessPoolExecutor, as_completed
 import os
 import pickle
+import h5py
 import random
 import time
 import fastavro
@@ -15,6 +16,7 @@ from torch.utils.data import DataLoader, TensorDataset, random_split
 import torch.utils.data
 from tqdm import tqdm
 import torch.multiprocessing as mp
+from joblib import dump, load
 
 class DataRecorder:
     def __init__(self,
@@ -23,7 +25,7 @@ class DataRecorder:
         self.random_all(42)  # 设置一切随机数种为 42
 
         self.existed_datarecoder_path = f"/home/yanghc03/dataset/{dataset_name}/emb_{embedding_dim}.pkl"
-        self.parquet_path_linux = f"/home/yanghc03/dataset/{dataset_name}/data.parquet"
+        self.parquet_path_linux = f"/home/yanghc03/dataset/{dataset_name}/data_demo.parquet"
         self.dataset_name = dataset_name
         self.parquet_table = None
         self.label_name = "label"
@@ -33,7 +35,7 @@ class DataRecorder:
 
         if os.path.exists(self.existed_datarecoder_path):
             # 为了重复实验超参数而省略每次的加载过程
-            existed_datarecorder = self.load_datarecorder(self.existed_datarecoder_path)
+            existed_datarecorder = self.load(self.existed_datarecoder_path)
             self.__dict__.update(existed_datarecorder.__dict__)
             print(f"在指定路径{self.existed_datarecoder_path}: 找到datarecorder并加载成功")
 
@@ -41,7 +43,6 @@ class DataRecorder:
             print(f"在指定路径{self.existed_datarecoder_path}: 未找到datarecorder，开始初始化计算")
             self.read_parquet(self.parquet_path_linux)
             self.label_encoders = {}
-            self.sponsor_id_tensor = None
             self.label_tensor = None
             self.encoded_tensor = None
             self.feature_name_list = []
@@ -58,8 +59,8 @@ class DataRecorder:
             self.input_dim = 0
             self.create_dataset()
             del self.parquet_table
-            with open(self.existed_datarecoder_path, "wb") as file:
-                pickle.dump(self, file)
+            self.save(self.existed_datarecoder_path, chunk_size=10_000_000)  # 分块大小 10MB
+
             print(f"初始化成功，datarecorder已经成功储存到:{self.existed_datarecoder_path}")
 
         print("============================================")
@@ -67,13 +68,38 @@ class DataRecorder:
         print(f"Sample number: {self.num_sample}")
         print(f"Feature number: {self.feature_num}")
         print("============================================")
+        for k, v in self.__dict__.items():
+            print(f"变量名:{k}, 类型:{type(v)}")
+        raise KeyboardInterrupt
+    
+    def save(self, filepath, chunk_size=1_000_000):
+        """
+        分块保存整个类对象
+        :param filepath: 保存文件的路径（基础路径）
+        :param chunk_size: 分块大小（字节数）
+        """
+        with open(filepath, "wb") as f:
+            pickled_data = pickle.dumps(self, protocol=pickle.HIGHEST_PROTOCOL)
+            total_size = len(pickled_data)
+            # 分块写入
+            for i in range(0, total_size, chunk_size):
+                chunk = pickled_data[i:i + chunk_size]
+                f.write(chunk)
+                print(f"已写入第 {i // chunk_size + 1} 块，共 {total_size // chunk_size + 1} 块")
 
-    @staticmethod
-    def load_datarecorder(file_path):
-        with open(file_path, "rb") as file:
-            loaded_object = pickle.load(file)
-        return loaded_object
 
+    @classmethod
+    def load(cls, filepath):
+        """
+        从分块文件加载整个类对象
+        :param filepath: 文件路径
+        :return: 重建的类对象
+        """
+        with open(filepath, "rb") as f:
+            pickled_data = f.read()  # 读取所有分块
+            obj = pickle.loads(pickled_data)  # 反序列化为对象
+        print(f"对象已从 {filepath} 加载成功")
+        return obj
 
 
     @staticmethod

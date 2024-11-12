@@ -12,7 +12,7 @@ class LR(BaseModel):
                                  num_epochs=30,
                                  weight_decay=gamma,
                                  learning_rate=lr,
-                                 record=True)
+                                 record=False)
         # 调用父类
         self.lr_layer = LinearRegression_layer(self.dataRecorder).to(self.device)
         self.intialize_weights()
@@ -26,10 +26,8 @@ class LR(BaseModel):
 
 
 if __name__ == "__main__":
-    for emb_dim in [12, 16, 20]:
-        for gamma in [0, 0.1, 0.2]:
-            for lr in [0.001, 0.0001]:
-                model = LR(embedding_dim=emb_dim, gamma=gamma, lr=lr)
-                model.train_model()
-                model.show_evaluation_results()
-            
+    for gamma in [1e-5, 5e-5, 1e-6, 5e-6, 1e-7, 5e-7, 1e-8]:
+            model = LR(gamma=gamma)
+            model.train_model()
+            model.show_evaluation_results()
+        
