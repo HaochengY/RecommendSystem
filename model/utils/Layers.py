@@ -128,6 +128,8 @@ class Embedding_layer(nn.Module):
         embedded_to_1_dim_features = []
         embedded_input_1_dim_tensor = None
         embedded_input_tensor = None
+        print(self.embedded_features)
+        raise KeyboardInterrupt
 
         # 使用 tqdm 包装特征数量的循环，显示进度条
         for i in range(self.dataRecorder.feature_num):

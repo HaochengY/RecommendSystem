@@ -38,6 +38,12 @@ $\text{CTR}(t) = \frac{1}{|R(t)|} \sum_{x \in R(t)} \text{CTR}(x)$
 
 结果可以看出， 普通的LR模型Term CTR 的KL散度提升了 13.28%，加了相关性的 Related term CTRs  提升了19.67%  
 
+## 超参数调优：
+
+| 超参数设置            | AUC  |
+|------------------|------|
+| $\gamma = 1e-5 $ | 0.7117 |
+
 
 
 

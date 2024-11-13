@@ -1,12 +1,9 @@
-import json
-import sys
+
 from concurrent.futures import ProcessPoolExecutor, as_completed
 import os
 import pickle
 import h5py
 import random
-import time
-import fastavro
 import numpy as np
 import pyarrow as pa
 import pyarrow.parquet as pq
@@ -19,17 +16,17 @@ import torch.utils.data
 from tqdm import tqdm
 import torch.multiprocessing as mp
 from joblib import dump, load
-
+# from RecommendSystem.model.utils.utils import load_dataloader, load_dict, save_dataloader, save_dict
 from model.utils.utils import load_dataloader, load_dict, save_dataloader, save_dict
 
 class DataRecorder:
     def __init__(self,
-                 dataset_name="Criteo_x1", embedding_dim=12, batch_size=256):
+                 dataset_name="Criteo_x1", embedding_dim=12, batch_size=512):
         mp.set_start_method("spawn", force=True)
-        self.random_all(42)  # 设置一切随机数种为 42
+        self.random_all(2021)  # 设置一切随机数种为 2021
 
-        self.existed_datarecoder_path = f"/home/yanghc03/dataset/{dataset_name}/emb_{embedding_dim}"
-        self.parquet_path_linux = f"/home/yanghc03/dataset/{dataset_name}/data.parquet"
+        self.existed_datarecoder_path = f"/home/yanghc03/dataset/{dataset_name}/emb_{embedding_dim}/demo"
+        self.parquet_path_linux = f"/home/yanghc03/dataset/{dataset_name}/data_demo.parquet"
         self.dataset_name = dataset_name
         self.parquet_table = None
         self.label_name = "label"
@@ -37,22 +34,22 @@ class DataRecorder:
         self.batch_size = batch_size
         self.embedding_dim = embedding_dim
 
-        # if os.path.exists(self.existed_datarecoder_path):
-        #     # 为了重复实验超参数而省略每次的加载过程
-        #     existed_datarecorder = self.load(self.existed_datarecoder_path)
-        #     self.__dict__.update(existed_datarecorder.__dict__)
-        #     print(f"在指定路径{self.existed_datarecoder_path}: 找到datarecorder并加载成功")
-
-        # else:
-        #     print(f"在指定路径{self.existed_datarecoder_path}: 未找到完整的datarecorder，开始初始化计算")
         self.read_parquet(self.parquet_path_linux)
         self.label_encoders = {}
         self.label_tensor = None
         self.encoded_tensor = None
         self.feature_name_list = []
         self.feature_num = 0
+        self.vocab_sizes = {}
+        self.embedding_dict = {}
+        self.embedding_to_1_dim_dict = {}
+        self.train_loader = None
+        self.val_loader = None
+        self.test_loader = None
+        self.num_sample = 0
+        self.input_dim = 0
         dataloader_path = os.path.join(self.existed_datarecoder_path, "train_loader_dataset.npz")
-        if os.path.exists(dataloader_path) and os.path.exists(os.path.join(self.existed_datarecoder_path, "vocab_sizes.pkl")):
+        if os.path.exists(dataloader_path) and os.path.exists(os.path.join(self.existed_datarecoder_path, "embedding_dict.pkl")):
             with tqdm(total=3, desc=f"完整的dataloader和embedding dict数据存在，直接导入,可以跳过编码，导入中...", unit=" steps") as pbar:
                 self.train_loader = load_dataloader(os.path.join(self.existed_datarecoder_path, "train_loader_dataset.npz"))
                 pbar.update(1)
@@ -65,20 +62,23 @@ class DataRecorder:
         else:
             print(f"dataloader和embedding dict数据不完整，需要计算...")
             self.encoded_data = self.encode_process()
-        self.vocab_sizes = {}
-        self.embedding_dict = {}
-        self.embedding_to_1_dim_dict = {}
-        self.embedding_schema()
-        self.train_loader = None
-        self.val_loader = None
-        self.test_loader = None
-        self.num_sample = 0
-        self.input_dim = 0
+            self.embedding_schema()
+
+
         if os.path.exists(dataloader_path):
             print("完整的dataloader数据存在，直接导入,可以跳过dataset")
         else:
             self.create_dataset()
         del self.parquet_table
+
+        if self.num_sample != 0:
+            print("储存其他变量中")
+            self.save_other_variables()
+        else:
+            print("其他变量没有初始化，导入中")
+            self.load_other_variables(os.path.join(self.existed_datarecoder_path, "other_var.pkl"))
+
+
 
 
         print("============================================")
@@ -88,6 +88,30 @@ class DataRecorder:
         print("============================================")
 
 
+    def load_other_variables(self, input_file):
+
+        with open(input_file, 'rb') as file:
+            data = pickle.load(file)
+        keys = []
+        # 将加载的数据赋值给类的变量
+        for key, value in data.items():
+            setattr(self, key, value)
+            keys.append(key)
+
+        print(f"类变量{keys}已从 {input_file} 恢复")
+    def save_other_variables(self):
+
+        blacklist = ["label_tensor", "encoded_tensor", "train_loader", "val_loader", "test_loader", "dataset",
+                      "embedding_dict", "embedding_to_1_dim_dict", "encoded_data"]
+        class_variables = vars(self)
+        # 过滤掉黑名单中的变量
+        filtered_variables = {key: value for key, value in class_variables.items() if key not in blacklist}
+
+        # 保存到 Pickle 文件
+        with open(os.path.join(self.existed_datarecoder_path, 'other_var.pkl'), 'wb') as file:
+            pickle.dump(filtered_variables, file)
+
+        print(f"过滤后的类变量已保存到 {os.path.join(self.existed_datarecoder_path, 'other_var.pkl')}")
     @staticmethod
     def random_all(seed):
         random.seed(seed)
@@ -238,9 +262,8 @@ class DataRecorder:
         :return:
         """
        
-        if os.path.exists(os.path.join(self.existed_datarecoder_path, "vocab_sizes.pkl")):
+        if os.path.exists(os.path.join(self.existed_datarecoder_path, "embedding_dict.pkl")):
             print("找到字典信息，加载中....")
-            self.vocab_sizes = load_dict(os.path.join(self.existed_datarecoder_path, "vocab_sizes.pkl"))
             self.embedding_dict = load_dict(os.path.join(self.existed_datarecoder_path, "embedding_dict.pkl"))
             self.embedding_to_1_dim_dict = load_dict(os.path.join(self.existed_datarecoder_path, "embedding_to_1_dim_dict.pkl"))
             print("加载成功")
@@ -252,9 +275,8 @@ class DataRecorder:
                 self.vocab_sizes[col] = vocab_size
                 self.embedding_dict[col] = nn.Embedding(vocab_size, self.embedding_dim)
                 self.embedding_to_1_dim_dict[col] = nn.Embedding(vocab_size, 1)
-            save_dict(os.path.join(self.existed_datarecoder_path, "vocab_sizes.pkl"), self.vocab_sizes)
             save_dict(os.path.join(self.existed_datarecoder_path, "embedding_dict.pkl"), self.embedding_dict)
-            save_dict(os.path.join(self.existed_datarecoder_path, "embedding_to_1_dim_dict.pkl"), self.vocab_sizes)
+            save_dict(os.path.join(self.existed_datarecoder_path, "embedding_to_1_dim_dict.pkl"), self.embedding_to_1_dim_dict)
             print("储存成功")
 
 

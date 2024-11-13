@@ -18,24 +18,22 @@ from model.utils.Layers import Embedding_layer
 from model.utils.Preprocess import DataRecorder
 class BaseModel(nn.Module):
     def __init__(self, 
-                 model_name, 
+                 model_name,
+                 dataRecorder,
                  dataset_name="Criteo_x1",
-                 batch_size=256,
-                 patience=5, 
-                 embedding_dim=12, 
+                 patience=2,
                  num_epochs=30, 
-                 learning_rate=0.01,
+                 learning_rate=0.001,
                  criterion_type="BCE", 
-                 optimizer_type="AdamW",
-                 weight_decay=0, 
-                 record=True):
+                 optimizer_type="Adam",
+                 weight_decay=0,
+                 record=True
+                 ):
         super(BaseModel, self).__init__()
         self.start_time = time.time()
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         print(f"Calculating with {self.device}")
-        self.dataRecorder = DataRecorder(dataset_name=dataset_name,
-                                        embedding_dim=embedding_dim, 
-                                        batch_size=batch_size)
+        self.dataRecorder = dataRecorder
         self.dataset_name = dataset_name
         self.input_dim = self.dataRecorder.input_dim
         self.num_epochs = num_epochs
@@ -186,7 +184,6 @@ class BaseModel(nn.Module):
                 f"                      {self.model_name} Model Result            ",
                 "=================================================================",
                 f"模型参数:",
-                f"负采样比例:{self.dataRecorder.down_sample}%",
                 f"数据集路径:{self.dataRecorder.parquet_path_linux}",
                 f"批次大小: {self.dataRecorder.batch_size}, embedding维度：{self.dataRecorder.embedding_dim}, 优化器：{self.optimizer_type}, 学习率：{self.learning_rate}, 正则化系数：{self.weight_decay}",
                 f"CPU/GPU: {self.device}, 迭代次数：{epoch_inf}, 损失函数：{self.criterion_type}"]
