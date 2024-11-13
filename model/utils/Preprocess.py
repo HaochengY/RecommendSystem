@@ -237,8 +237,6 @@ class DataRecorder:
         torch.cuda.empty_cache()
         return col, encoded_data, encoder
 
-
-
     def encode_process(self):
         """
         执行编码操作

@@ -44,8 +44,12 @@ def generate_demo():
 
 
 def repartition(row_group_size):
+    print("reading...")
     table = pq.read_table('/home/yanghc03/dataset/Criteo_x1/data.parquet')
-    pq.write_table(table, '/home/yanghc03/dataset/Criteo_x1/data2.parquet', row_group_size=row_group_size)
+    print("writing...")
 
+    pq.write_table(table, '/home/yanghc03/dataset/Criteo_x1/data2.parquet', row_group_size=row_group_size)
+    print(f"原文件Rowgroup:{pq.ParquetFile('/home/yanghc03/dataset/Criteo_x1/data.parquet').num_row_groups}")
+    print(f"新文件Rowgroup:{pq.ParquetFile('/home/yanghc03/dataset/Criteo_x1/data2.parquet').num_row_groups}")
 
 repartition(4000000)

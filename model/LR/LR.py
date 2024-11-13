@@ -1,10 +1,11 @@
 import torch
 import torch.nn as nn
 
-from RecommendSystem.model.utils.BaseModel import BaseModel
-from RecommendSystem.model.utils.Layers import LinearRegression_layer
+# from RecommendSystem.model.utils.BaseModel import BaseModel
+# from RecommendSystem.model.utils.Layers import LinearRegression_layer
 
-
+from model.utils.BaseModel import BaseModel
+from model.utils.Layers import LinearRegression_layer
 class LR(BaseModel):
     def __init__(self,embedding_dim=12, gamma=0.0,lr=0.001):
         super(LR, self).__init__(model_name="LR",

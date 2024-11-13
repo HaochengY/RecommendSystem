@@ -11,10 +11,11 @@ from tqdm import tqdm
 from torch.cuda.amp import autocast, GradScaler
 
 
-from RecommendSystem.model.utils.Layers import Embedding_layer
-from RecommendSystem.model.utils.Preprocess import DataRecorder
+# from RecommendSystem.model.utils.Layers import Embedding_layer
+# from RecommendSystem.model.utils.Preprocess import DataRecorder
 
-
+from model.utils.Layers import Embedding_layer
+from model.utils.Preprocess import DataRecorder
 class BaseModel(nn.Module):
     def __init__(self, 
                  model_name, 
