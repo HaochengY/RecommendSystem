@@ -11,8 +11,8 @@ from tqdm import tqdm
 from torch.cuda.amp import autocast, GradScaler
 
 
-from model.utils.Layers import Embedding_layer
-from model.utils.Preprocess import DataRecorder
+from RecommendSystem.model.utils.Layers import Embedding_layer
+from RecommendSystem.model.utils.Preprocess import DataRecorder
 
 
 class BaseModel(nn.Module):
@@ -84,8 +84,6 @@ class BaseModel(nn.Module):
 
     def train_model(self):
         print(f"Training {self.model_name} Model...")
-
-
         if self.record:
             print("=================================================================")
             print(f"                      {self.model_name} Model Result            ")

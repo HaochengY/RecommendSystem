@@ -1,12 +1,12 @@
 import torch
 import torch.nn as nn
 
-from model.utils.BaseModel import BaseModel
-from model.utils.Layers import LinearRegression_layer
+from RecommendSystem.model.utils.BaseModel import BaseModel
+from RecommendSystem.model.utils.Layers import LinearRegression_layer
 
 
 class LR(BaseModel):
-    def __init__(self,embedding_dim=12,gamma=0,lr=0.001):
+    def __init__(self,embedding_dim=12, gamma=0.0,lr=0.001):
         super(LR, self).__init__(model_name="LR",
                                  embedding_dim=embedding_dim,
                                  num_epochs=30,
@@ -27,7 +27,7 @@ class LR(BaseModel):
 
 if __name__ == "__main__":
     for gamma in [1e-5, 5e-5, 1e-6, 5e-6, 1e-7, 5e-7, 1e-8]:
-            model = LR(gamma=gamma)
-            model.train_model()
-            model.show_evaluation_results()
-        
+        model = LR(gamma=gamma)
+        model.train_model()
+        model.show_evaluation_results()
+

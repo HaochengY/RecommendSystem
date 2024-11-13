@@ -1,3 +1,5 @@
+import json
+import sys
 from concurrent.futures import ProcessPoolExecutor, as_completed
 import os
 import pickle
@@ -24,8 +26,8 @@ class DataRecorder:
         mp.set_start_method("spawn", force=True)
         self.random_all(42)  # 设置一切随机数种为 42
 
-        self.existed_datarecoder_path = f"/home/yanghc03/dataset/{dataset_name}/emb_{embedding_dim}.pkl"
-        self.parquet_path_linux = f"/home/yanghc03/dataset/{dataset_name}/data_demo.parquet"
+        self.existed_datarecoder_path = f"/home/yanghc03/dataset/{dataset_name}/emb_{embedding_dim}"
+        self.parquet_path_linux = f"/home/yanghc03/dataset/{dataset_name}/data.parquet"
         self.dataset_name = dataset_name
         self.parquet_table = None
         self.label_name = "label"
@@ -59,8 +61,7 @@ class DataRecorder:
             self.input_dim = 0
             self.create_dataset()
             del self.parquet_table
-            self.save(self.existed_datarecoder_path, chunk_size=10_000_000)  # 分块大小 10MB
-
+            self.save(self.existed_datarecoder_path)
             print(f"初始化成功，datarecorder已经成功储存到:{self.existed_datarecoder_path}")
 
         print("============================================")
@@ -68,38 +69,118 @@ class DataRecorder:
         print(f"Sample number: {self.num_sample}")
         print(f"Feature number: {self.feature_num}")
         print("============================================")
-        for k, v in self.__dict__.items():
-            print(f"变量名:{k}, 类型:{type(v)}")
-        raise KeyboardInterrupt
-    
-    def save(self, filepath, chunk_size=1_000_000):
-        """
-        分块保存整个类对象
-        :param filepath: 保存文件的路径（基础路径）
-        :param chunk_size: 分块大小（字节数）
-        """
-        with open(filepath, "wb") as f:
-            pickled_data = pickle.dumps(self, protocol=pickle.HIGHEST_PROTOCOL)
-            total_size = len(pickled_data)
-            # 分块写入
-            for i in range(0, total_size, chunk_size):
-                chunk = pickled_data[i:i + chunk_size]
-                f.write(chunk)
-                print(f"已写入第 {i // chunk_size + 1} 块，共 {total_size // chunk_size + 1} 块")
 
+    def save(self, save_dir):
+        """
+        保存类实例到指定目录
+        :param save_dir: 保存目录
+        """
+        os.makedirs(save_dir, exist_ok=True)  # 创建保存目录
+        metadata = {}
+
+        # 使用 tqdm 可视化进度
+        with tqdm(total=len(vars(self)), desc="Saving variables",
+                  bar_format="{l_bar}{bar} | {n_fmt}/{total_fmt} [{elapsed}] {postfix}") as pbar:
+            for key, value in vars(self).items():
+                pbar.set_postfix_str(f"Processing: {key}")  # 动态显示正在处理的变量
+
+                if isinstance(value, torch.Tensor):  # 特殊处理 Tensor
+                    torch.save(value, os.path.join(save_dir, f"{key}.pt"))
+                    metadata[key] = {"type": "tensor"}
+
+                elif isinstance(value, torch.utils.data.TensorDataset):  # 特殊处理 TensorDataset
+                    dataset_path = os.path.join(save_dir, f"{key}.npz")
+                    tensors = [t.cpu().numpy() for t in value.tensors]
+                    np.savez(dataset_path, *tensors)
+                    metadata[key] = {"type": "tensordataset", "path": dataset_path}
+
+                elif isinstance(value, torch.utils.data.DataLoader):  # 特殊处理 DataLoader
+                    loader_path = os.path.join(save_dir, f"{key}_dataset.npz")
+                    dataset = value.dataset
+                    while isinstance(dataset, torch.utils.data.Subset):  # 如果是 Subset，递归获取基础数据集
+                        dataset = dataset.dataset
+                    if isinstance(dataset, torch.utils.data.TensorDataset):
+                        tensors = [t.cpu().numpy() for t in dataset.tensors]
+                        np.savez(loader_path, *tensors)
+                        metadata[key] = {
+                            "type": "dataloader",
+                            "path": loader_path,
+                            "batch_size": value.batch_size,
+                            "indices": value.dataset.indices if isinstance(value.dataset,
+                                                                           torch.utils.data.Subset) else None,
+                        }
+                    else:
+                        raise TypeError(f"不支持的 DataLoader 数据集类型: {type(value.dataset)}")
+                else:  # 普通变量
+                    metadata[key] = {"type": "pickle"}
+
+                pbar.update(1)  # 更新进度条
+
+        # 保存普通变量到 Pickle 文件
+        with open(os.path.join(save_dir, "ordinary.pkl"), "wb") as f:
+            pickle.dump(self, f, protocol=pickle.HIGHEST_PROTOCOL)
+
+        # 保存元信息
+        def make_serializable(obj):
+            if isinstance(obj, range):
+                return list(obj)
+            elif isinstance(obj, torch.Tensor):
+                return {"type": "tensor", "shape": list(obj.size())}
+            elif isinstance(obj, np.ndarray):
+                return {"type": "ndarray", "shape": obj.shape}
+            elif isinstance(obj, (int, float, str, bool)) or obj is None:
+                return obj
+            elif isinstance(obj, (list, tuple, set)):
+                return [make_serializable(i) for i in obj]
+            elif isinstance(obj, dict):
+                return {k: make_serializable(v) for k, v in obj.items()}
+            else:
+                return str(obj)
+
+        with open(os.path.join(save_dir, "metadata.json"), "w") as meta_file:
+            json.dump(make_serializable(metadata), meta_file, indent=4)
+
+        print(f"对象已保存到 {save_dir}")
 
     @classmethod
-    def load(cls, filepath):
+    def load(cls, save_dir, device="cpu"):
         """
-        从分块文件加载整个类对象
-        :param filepath: 文件路径
-        :return: 重建的类对象
+        从指定目录加载类实例
+        :param save_dir: 保存目录
+        :param device: 张量加载到的设备（如 'cpu' 或 'cuda'）
+        :return: 重建的类实例
         """
-        with open(filepath, "rb") as f:
-            pickled_data = f.read()  # 读取所有分块
-            obj = pickle.loads(pickled_data)  # 反序列化为对象
-        print(f"对象已从 {filepath} 加载成功")
-        return obj
+        with open(os.path.join(save_dir, "metadata.json"), "r") as meta_file:
+            metadata = json.load(meta_file)
+
+        with open(os.path.join(save_dir, "ordinary.pkl"), "rb") as f:
+            instance = pickle.load(f)
+
+        with tqdm(total=len(metadata), desc="Loading variables",
+                  bar_format="{l_bar}{bar} | {n_fmt}/{total_fmt} [{elapsed}] {postfix}") as pbar:
+            for key, info in metadata.items():
+                pbar.set_postfix_str(f"Processing: {key}")  # 动态显示正在处理的变量
+
+                if info["type"] == "tensor":  # 加载 Tensor
+                    setattr(instance, key, torch.load(os.path.join(save_dir, f"{key}.pt")).to(device))
+
+                elif info["type"] == "tensordataset":  # 加载 TensorDataset
+                    tensors = np.load(info["path"])
+                    tensors = [torch.tensor(tensors[file]).to(device) for file in tensors.files]
+                    setattr(instance, key, torch.utils.data.TensorDataset(*tensors))
+
+                elif info["type"] == "dataloader":  # 加载 DataLoader
+                    tensors = np.load(info["path"])
+                    tensors = [torch.tensor(tensors[file]).to(device) for file in tensors.files]
+                    dataset = torch.utils.data.TensorDataset(*tensors)
+                    setattr(instance, key, torch.utils.data.DataLoader(
+                        dataset, batch_size=info["batch_size"]
+                    ))
+
+                pbar.update(1)  # 更新进度条
+
+        print(f"对象已从 {save_dir} 加载")
+        return instance
 
 
     @staticmethod
