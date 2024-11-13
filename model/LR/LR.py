@@ -18,6 +18,7 @@ class LR(BaseModel):
         self.lr_layer = LinearRegression_layer(self.dataRecorder).to(self.device)
         self.intialize_weights()
         self.initialize_criterion()
+        print(list(self.parameters()))
         self.initialize_optimizer()
 
     def forward(self, x):
