@@ -1,5 +1,7 @@
 import pickle
+import random
 import torch
+import torch.backends
 import torch.utils
 from torch.utils.data import TensorDataset, DataLoader
 import numpy as np
@@ -58,4 +60,28 @@ def save_dict(path, dict):
 
 def load_dict(path):
     with open(path,"rb") as file:
-        return pickle.load(file)   
+        return pickle.load(file)
+
+
+
+
+def random_all(seed):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed(seed)
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = False
+
+
+
+def convert_dict(d):
+    new_d = {}
+    for k, v in d.items():
+        if isinstance(k, str) or k in ["-1", "-2"]:
+            k = int(k)
+        if isinstance(v, str) and v.isdigit():
+            v = int(v)
+        new_d[k] = v
+    return new_d
