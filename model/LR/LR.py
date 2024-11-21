@@ -7,13 +7,14 @@ from model.utils.Layers import LinearRegression_layer
 from model.utils.PreProcess import DataRecorder
 
 class LR(BaseModel):
-    def __init__(self,dataRecorder, gamma,lr):
+    def __init__(self,dataRecorder, gamma,lr, gpu):
         super(LR, self).__init__(model_name="LR",
                                  num_epochs=5,
                                  weight_decay=gamma,
                                  learning_rate=lr,
                                  record=True,
-                                 dataRecorder=dataRecorder)
+                                 dataRecorder=dataRecorder,
+                                 gpu = gpu)
         # 调用父类
         self.lr_layer = LinearRegression_layer(self.dataRecorder).to(self.device)
         # self.intialize_weights()
@@ -27,8 +28,9 @@ class LR(BaseModel):
 
 
 if __name__ == "__main__":
-    dataRecorder = DataRecorder(embedding_dim=4, batch_size=128)
-    model = LR(dataRecorder, gamma=0, lr=1e-3)
+    gpu = False
+    dataRecorder = DataRecorder(embedding_dim=4, batch_size=128, gpu=gpu)
+    model = LR(dataRecorder, gamma=0, lr=1e-3, gpu=gpu)
     model.train_model()
     model.show_evaluation_results()
 
