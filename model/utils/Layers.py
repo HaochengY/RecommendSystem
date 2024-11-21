@@ -103,7 +103,6 @@ class ResidualMLPBlock(nn.Module):
 class LinearRegression_layer(nn.Module):
     def __init__(self, dataRecoder):
         super().__init__()
-        # self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.dataRecoder = dataRecoder
         self.scalar_only = True
         self.scalar = Embedding_layer(self.dataRecoder)
@@ -119,7 +118,6 @@ class LinearRegression_layer(nn.Module):
 class Embedding_layer(nn.Module):
     def __init__(self, dataRecorder):
         super(Embedding_layer, self).__init__()
-        # self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.dataRecorder = dataRecorder
         self.embedding_dim = dataRecorder.embedding_dim
         self.feature_map = dataRecorder.feature_map
@@ -142,7 +140,7 @@ class Embedding_layer(nn.Module):
         torch.nn.init.normal_(embedding.weight[1:, :], mean=0.0, std=init_std)
         return embedding       
 
-    def forward(self, x, scalar_only=False):        # x = x.to(self.device)
+    def forward(self, x, scalar_only=False):       
         embedded_input_features = {}
         embedded_to_1_dim_features = {}
         embedded_input_1_dim_tensor = None
@@ -152,7 +150,7 @@ class Embedding_layer(nn.Module):
             column = self.dataRecorder.features[i]
             if self.feature_map[column]["type"] == "numerical":
                 continue
-            tensor = x[column].long()
+            tensor = x[column].long() - 1
             if not scalar_only:
                 embedded_input_features[column]=self.embedded_features[column](tensor)
             else:

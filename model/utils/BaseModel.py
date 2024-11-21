@@ -22,11 +22,16 @@ class BaseModel(nn.Module):
                  criterion_type="BCE", 
                  optimizer_type="Adam",
                  weight_decay=0,
-                 record=False
+                 record=False,
+                 gpu=False
                  ):
         super(BaseModel, self).__init__()
         self.start_time = time.time()
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        if gpu:
+            self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        else:
+            self.device = torch.device("cpu")
+
         print(f"Calculating with {self.device}")
         self.dataRecorder = dataRecorder
         self.dataset_name = dataset_name
@@ -98,12 +103,11 @@ class BaseModel(nn.Module):
                     labels = next(iter(labels.values()))
                     self.optimizer.zero_grad()
                     outputs = self.forward(inputs)
-                    loss = self.criterion(outputs.squeeze(1), labels)
+                    loss = self.criterion(outputs.squeeze(1), labels.float())
                     loss.backward()
                     torch.nn.utils.clip_grad_norm_(self.parameters(), max_norm=10.0)
                     self.optimizer.step()
                     train_loss += loss.item()
-                    print(f"train_loss:{train_loss}")
                     pbar.update(1)
 
             avg_train_loss = train_loss / len(self.dataRecorder.train_loader)
@@ -116,7 +120,6 @@ class BaseModel(nn.Module):
             with torch.no_grad():  
                 with tqdm(total=len(self.dataRecorder.valid_loader), desc=f"Validation {epoch+1}/{self.num_epochs}", unit="batch") as pbar:
                     for inputs, labels in self.dataRecorder.valid_loader:
-                        inputs = inputs
                         labels = next(iter(labels.values()))
                         outputs = self.forward(inputs)
                         val_labels.extend(labels.cpu().numpy().reshape(-1))

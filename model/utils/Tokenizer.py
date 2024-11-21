@@ -43,7 +43,7 @@ class Tokenizer:
                 with open(cp_path, 'w', encoding='utf-8') as json_file:
                     json.dump(encoding_map, json_file, indent=4, ensure_ascii=False)
             self.encoding_maps[col_name] = encoding_map
-            self.feature_map[col_name].update({"vocab_size": vocab_size+1})
+            self.feature_map[col_name].update({"vocab_size": vocab_size})
             pbar.update(1)  
         pbar.close()  
         print("vocab 搭建完成")

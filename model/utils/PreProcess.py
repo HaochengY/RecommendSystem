@@ -17,11 +17,15 @@ from model.utils.utils import  random_all
 import polars as pl
 
 class DataRecorder:
-    def __init__(self,test=False, embedding_dim=4, batch_size=128):
+    def __init__(self,test=True, embedding_dim=4, batch_size=128, gpu=False):
         random_all(2021)  # 设置一切随机数种为 2021
 
         self.test = test
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        if gpu:
+            self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        else:
+            self.device = torch.device("cpu")
+
         self.dataset_name = "Criteo_x1"
         self.feature_map = {}
         self.batch_size = batch_size
@@ -147,6 +151,7 @@ class TensorDictDataset(Dataset):
         labels = {key: self.label_dict[key][idx].to(self.device)
                    for key in self.label_keys}
         return features, labels
+
 
 
 
