@@ -36,7 +36,7 @@ class DataRecorder:
         self.train_sample_num = train_ddf.height
         self.valid_sample_num = valid_ddf.height
 
-        self.train_loader = self.transform(train_ddf, shuffle=True)
+        self.train_loader = self.transform(train_ddf, shuffle=False)
         self.valid_loader = self.transform(valid_ddf)
         self.test_loader = self.transform(test_ddf)
         

@@ -152,6 +152,9 @@ class Embedding_layer(nn.Module):
         if not scalar_only:
             embedded_input_tensor = self.dict2tensor(embedded_input_features)
         else:      
+            print(x["C1"][:10])
+            print(embedded_to_1_dim_features["C1"][:10])
+            raise KeyboardInterrupt
             embedded_input_1_dim_tensor = self.dict2tensor(embedded_to_1_dim_features)
 
         return embedded_input_tensor if not scalar_only else embedded_input_1_dim_tensor

@@ -172,8 +172,8 @@ class BaseModel(nn.Module):
                 self.logger.info(f'AUC: {val_auc:.6f} - Logloss: {val_logloss:.6f}')
                 return val_auc
 
-    def checkpoint_and_earlystop(self, val_auc):
-        if val_auc < self.best_auc:
+    def checkpoint_and_earlystop(self, val_auc, delta=1e-6):
+        if val_auc < self.best_auc - delta:
             self.best_auc = val_auc
             self.counter = 0
             os.makedirs(self.checkpoint, exist_ok=True)

@@ -7,3 +7,49 @@
 2024-11-22 15:11:24,518 INFO [my_logger] =========== Epoch = 1 start ===========
 2024-11-22 15:15:05,2 INFO [my_logger] Load data from root dir /home/yanghc03/dataset/Criteo_x1
 2024-11-22 15:15:05,2 INFO [my_logger] 检测到已编码后的数据完整
+2024-11-22 15:16:36,129 INFO [my_logger] 模型:LR, 批次大小: 4096, embedding维度:1, 优化器: Adam
+2024-11-22 15:16:36,130 INFO [my_logger] 学习率:0.001, net正则化系数:5e-07, emb正则化系数:5e-07,CPU/GPU: cuda:0, 损失函数: BCE
+2024-11-22 15:16:36,130 INFO [my_logger] 训练样本个数:33003326, 验证样本个数:8250124
+2024-11-22 15:16:36,130 INFO [my_logger] 开始训练:8058 batches/epoch
+2024-11-22 15:16:36,130 INFO [my_logger] =========== Epoch = 1 start ===========
+2024-11-22 15:27:23,749 INFO [my_logger] Train Loss: 0.485453
+2024-11-22 15:27:23,749 INFO [my_logger] Evaluation @epoch 1 - batch 8058: 
+2024-11-22 15:29:56,861 INFO [my_logger] AUC: 0.765590 - Logloss: 0.478630
+2024-11-22 15:29:57,342 INFO [my_logger] Best Model with AUC = 0.765590 储存至/home/yanghc03/recommended_system/RecommendSystem/result/Criteo_x1/20241122/151633/LR.model
+2024-11-22 15:29:57,342 INFO [my_logger] =========== Epoch = 1 end ===========
+2024-11-22 15:40:30,982 INFO [my_logger] Train Loss: 0.478933
+2024-11-22 15:40:30,982 INFO [my_logger] Evaluation @epoch 2 - batch 8058: 
+2024-11-22 15:43:01,766 INFO [my_logger] AUC: 0.766364 - Logloss: 0.477981
+2024-11-22 15:43:02,184 INFO [my_logger] 降低学习率为: 0.000100
+2024-11-22 15:43:02,185 INFO [my_logger] =========== Epoch = 2 end ===========
+2024-11-22 15:53:26,507 INFO [my_logger] Train Loss: 0.476108
+2024-11-22 15:53:26,507 INFO [my_logger] Evaluation @epoch 3 - batch 8058: 
+2024-11-22 15:55:58,255 INFO [my_logger] AUC: 0.767129 - Logloss: 0.477435
+2024-11-22 15:55:58,683 INFO [my_logger] 降低学习率为: 0.000010
+2024-11-22 15:55:58,683 INFO [my_logger] ======== Early stop at Epoch = 2 =========
+2024-11-22 15:55:58,684 INFO [my_logger] 训练结束.
+2024-11-22 15:55:58,684 INFO [my_logger] 加载最优模型: /home/yanghc03/recommended_system/RecommendSystem/result/Criteo_x1/20241122/151633/LR.model
+2024-11-22 15:55:58,705 INFO [my_logger] ======== Validation evaluation ========
+2024-11-22 15:58:32,635 INFO [my_logger] AUC: 0.765590 - Logloss: 0.478630
+2024-11-22 15:58:33,56 INFO [my_logger] ======== Test evaluation ========
+2024-11-22 16:00:01,182 INFO [my_logger] AUC: 0.765852 - Logloss: 0.478279
+2024-11-22 16:00:01,419 INFO [my_logger] 
+
+
+
+
+
+2024-11-22 17:53:24,141 INFO [my_logger] Load data from root dir /home/yanghc03/dataset/Criteo_x1
+2024-11-22 17:53:24,141 INFO [my_logger] 检测到已编码后的数据完整
+2024-11-22 17:55:20,425 INFO [my_logger] 模型:LR, 批次大小: 4096, embedding维度:1, 优化器: Adam
+2024-11-22 17:55:20,448 INFO [my_logger] 学习率:0.001, net正则化系数:5e-07, emb正则化系数:5e-07,CPU/GPU: cuda:0, 损失函数: BCE
+2024-11-22 17:55:20,448 INFO [my_logger] 训练样本个数:33003326, 验证样本个数:8250124
+2024-11-22 17:55:20,449 INFO [my_logger] 开始训练:8058 batches/epoch
+2024-11-22 17:55:20,449 INFO [my_logger] =========== Epoch = 1 start ===========
+2024-11-22 18:05:02,90 INFO [my_logger] Load data from root dir /home/yanghc03/dataset/Criteo_x1
+2024-11-22 18:05:02,90 INFO [my_logger] 检测到已编码后的数据完整
+2024-11-22 18:07:03,666 INFO [my_logger] 模型:LR, 批次大小: 4096, embedding维度:1, 优化器: Adam
+2024-11-22 18:07:03,667 INFO [my_logger] 学习率:0.001, net正则化系数:5e-07, emb正则化系数:5e-07,CPU/GPU: cuda:0, 损失函数: BCE
+2024-11-22 18:07:03,667 INFO [my_logger] 训练样本个数:33003326, 验证样本个数:8250124
+2024-11-22 18:07:03,667 INFO [my_logger] 开始训练:8058 batches/epoch
+2024-11-22 18:07:03,667 INFO [my_logger] =========== Epoch = 1 start ===========
