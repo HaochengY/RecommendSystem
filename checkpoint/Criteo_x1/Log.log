@@ -1,0 +1,9 @@
+2024-11-22 15:09:54,26 INFO [my_logger] Load data from root dir /home/yanghc03/dataset/Criteo_x1
+2024-11-22 15:09:54,26 INFO [my_logger] 检测到已编码后的数据完整
+2024-11-22 15:11:24,518 INFO [my_logger] 模型:LR, 批次大小: 8, embedding维度:1, 优化器: Adam
+2024-11-22 15:11:24,518 INFO [my_logger] 学习率:0.001, net正则化系数:5e-07, emb正则化系数:5e-07,CPU/GPU: cuda:0, 损失函数: BCE
+2024-11-22 15:11:24,518 INFO [my_logger] 训练样本个数:33003326, 验证样本个数:33003326
+2024-11-22 15:11:24,518 INFO [my_logger] 开始训练:4125416 batches/epoch
+2024-11-22 15:11:24,518 INFO [my_logger] =========== Epoch = 1 start ===========
+2024-11-22 15:15:05,2 INFO [my_logger] Load data from root dir /home/yanghc03/dataset/Criteo_x1
+2024-11-22 15:15:05,2 INFO [my_logger] 检测到已编码后的数据完整

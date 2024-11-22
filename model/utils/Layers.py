@@ -8,8 +8,6 @@ from model.utils.utils import random_all
 class MLPBlock(nn.Module):
     def __init__(self, input_dim, output_dim, activation_func="ReLU", normalization="bn", dropout_rate=None):
         super(MLPBlock, self).__init__()
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
         self.fc = nn.Linear(input_dim, output_dim)  # 修改为不同的输入和输出维度
         activation_func = activation_func.lower()
         # 激活函数选择
@@ -39,7 +37,6 @@ class MLPBlock(nn.Module):
             self.dropout = nn.Dropout(0)  # 不dropout
 
     def forward(self, x):
-        x = x.to(next(self.fc.parameters()).device)
         bs = x.size()[0]
         x = x.view(bs, -1)
         out = self.fc(x)
@@ -53,10 +50,8 @@ class MLPBlock(nn.Module):
 class ResidualMLPBlock(nn.Module):
     def __init__(self, input_dim, output_dim, activation_func, normalization="bn", dropout_rate=None):
         super(ResidualMLPBlock, self).__init__()
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.fc = nn.Linear(input_dim, output_dim)  # 修改为不同的输入和输出维度
         activation_func = activation_func.lower()
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
         # 激活函数选择
         if activation_func == "relu":
@@ -87,7 +82,6 @@ class ResidualMLPBlock(nn.Module):
         # 避免残差连接的时候维度不匹配
 
     def forward(self, x):
-        x = x.to(next(self.fc.parameters()).device)
         bs = x.size()[0]
         x = x.view(bs, -1)
         identity = x
@@ -134,13 +128,13 @@ class Embedding_layer(nn.Module):
 
 
     def initialize_embeddings(self, num_embeddings, emb_dim, pad_idx=0, init_std=1e-4):
-        random_all(2021)
+        # random_all(2021)
         embedding = nn.Embedding(num_embeddings=num_embeddings, embedding_dim=emb_dim, padding_idx=pad_idx) 
-        random_all(2021)
+        # random_all(2021)
         torch.nn.init.normal_(embedding.weight[1:, :], mean=0.0, std=init_std)
         return embedding       
 
-    def forward(self, x, scalar_only=False):       
+    def forward(self, x, scalar_only=False):      
         embedded_input_features = {}
         embedded_to_1_dim_features = {}
         embedded_input_1_dim_tensor = None
@@ -150,14 +144,14 @@ class Embedding_layer(nn.Module):
             column = self.dataRecorder.features[i]
             if self.feature_map[column]["type"] == "numerical":
                 continue
-            tensor = x[column].long() - 1
+            tensor = x[column].long()
             if not scalar_only:
                 embedded_input_features[column]=self.embedded_features[column](tensor)
             else:
-                embedded_to_1_dim_features[column]=self.embedded_to_1_dim_features[column](tensor)
+                embedded_to_1_dim_features[column] = self.embedded_to_1_dim_features[column](tensor)
         if not scalar_only:
             embedded_input_tensor = self.dict2tensor(embedded_input_features)
-        else:
+        else:      
             embedded_input_1_dim_tensor = self.dict2tensor(embedded_to_1_dim_features)
 
         return embedded_input_tensor if not scalar_only else embedded_input_1_dim_tensor

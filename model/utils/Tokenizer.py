@@ -1,7 +1,10 @@
+from collections import Counter
 import glob
 import json
+import logging
 import os
 import shutil
+import numpy as np
 import polars as pl
 import torch
 import torch.nn as nn
@@ -9,11 +12,15 @@ import pyarrow.parquet as pq
 from tqdm import tqdm
 import pyarrow as pa
 from model.utils.utils import convert_dict
-
+"""
+-2 是OOV
+-1 是PAD（目前没有用）
+"""
 
 
 class Tokenizer:
     def __init__(self, feature_map, embedding_dim, train_ddf, categorical_col, root_path):
+        self.logger = logging.getLogger('my_logger')
         self.feature_map = feature_map
         self.embedding_dim = embedding_dim
         self.root_path = root_path
@@ -46,23 +53,33 @@ class Tokenizer:
             self.feature_map[col_name].update({"vocab_size": vocab_size})
             pbar.update(1)  
         pbar.close()  
-        print("vocab 搭建完成")
-        json_file_path = os.path.join(self.checkpoint, 'feature_map.json')
-        # 将字典写入 JSON 文件
-        with open(json_file_path, 'w', encoding='utf-8') as json_file:
+        self.logger.info(f"vocab 搭建完成, feature_map:{self.feature_map}")
+
+        with open(os.path.join(self.checkpoint, 'feature_map.json'), 'w', encoding='utf-8') as json_file:
             json.dump(self.feature_map, json_file, indent=4, ensure_ascii=False)
+        self.logger.info(f"feature_map成功写入{os.path.join(self.checkpoint, 'feature_map.json')}")
+
+        with open(os.path.join(self.checkpoint, 'encoding_maps.json'), 'w', encoding='utf-8') as json_file:
+            json.dump(self.encoding_maps, json_file, indent=4, ensure_ascii=False)
+        self.logger.info(f"vocab成功写入{os.path.join(self.checkpoint, 'encoding_maps.json')}")
 
 
 
 
 
     def encode_categorical(self, col_name, ddf):
-        unique_values = ddf.select(pl.col(col_name)).get_column(col_name).unique().sort().to_list()
-        unique_values.append(-1)
-        unique_values.append(-2)
-        vocab_size = len(unique_values)
-        encoding_map={value:idx+1 for idx, value in enumerate(unique_values)}
-        return encoding_map, vocab_size
+        values = ddf.select(pl.col(col_name)).get_column(col_name).to_list()
+        word_counts = []
+        for k, v in Counter(values).items():
+            word_counts.append((str(k), np.int64(v)))
+        word_counts = sorted(word_counts, key=lambda x: (-x[1], x[0]))
+        words = [int(k) for k, _ in word_counts]
+        encoding_map={}
+        encoding_map[-1] = 0
+        encoding_map.update(dict((token, idx) for idx, token in enumerate(words, 1)))
+        vocab_size = len(encoding_map)
+        encoding_map.update({-2:vocab_size})
+        return encoding_map, vocab_size + 1
 
     def encode_numerical(self):
         pass             
@@ -71,10 +88,10 @@ class Tokenizer:
         checkpoint_for_encoded_columns =  os.path.join(os.path.join(self.checkpoint, 'encoded_column'), partten)
         existed_encoded_table = os.path.join(checkpoint_for_encoded_columns, "encoded_table.parquet")
         if os.path.exists(existed_encoded_table):
-            print(f"{existed_encoded_table}存在，直接调取...")
-            # ddf = pq.read_table(existed_encoded_table)
+            self.logger.info(f"编码后的{partten}数据存在，调取from {existed_encoded_table}")
         else:
-            print(f"{existed_encoded_table}不存在，需要计算...")
+            self.logger.info(f"编码后的{partten}数据不存在或不完整，计算中...")
+
             if not os.path.exists(checkpoint_for_encoded_columns):
                 os.makedirs(checkpoint_for_encoded_columns) 
             pbar = tqdm(total=len(self.categorical_col), desc="Encoding columns", unit="column")
@@ -91,7 +108,6 @@ class Tokenizer:
                         raise ValueError
                     new_col = []
                     data_list = ddf.select(pl.col(col_name)).to_series().to_list()
-                    # 使用 tqdm 包裹内部循环
                     for _, v in enumerate(tqdm(data_list, desc=f"Mapping {col_name}", unit="item")):
                         if v in encoding_map:
                             mapped_value = encoding_map[v]
@@ -100,7 +116,6 @@ class Tokenizer:
                         new_col.append(mapped_value)
                     with open(cp_path, 'w', encoding='utf-8') as json_file:
                         json.dump(new_col, json_file, indent=4, ensure_ascii=False)
-                    print(f"encoded_col已储存到{cp_path}")
                 pbar.update(1)
                 try:
                     temp = new_col
@@ -109,7 +124,6 @@ class Tokenizer:
                     print(temp[:100])
                     print(new_col[:100])
                     raise e
-
                 ddf = ddf.with_column(pl.Series(name=col_name, values=new_col))
             pbar.close()
 
@@ -117,13 +131,13 @@ class Tokenizer:
             parquet_files = glob.glob(os.path.join(checkpoint_for_encoded_columns, '*.parquet'))
             
             def create_parquet(ddf):
-                print("单个列的parquet文件不存在")
+                self.logger.info(f"单个列的parquet文件不存在,重新计算并储存至 {checkpoint_for_encoded_columns}")
                 for col in ddf.columns:
                     try:
                         cp_path = os.path.join(checkpoint_for_encoded_columns, f'encoded_col_{col}.parquet')
                         ddf.select(pl.col(col)).to_parquet(cp_path)
-                        print(f"column {col} saved 成功储存到{cp_path}")
                     except Exception as e:
+                        logging.exception(f"Error saving column {col}: {e}")
                         raise ValueError(f"Error saving column {col}: {e}")
                     
             if not parquet_files: create_parquet(ddf)
@@ -131,7 +145,8 @@ class Tokenizer:
             parquet_files = glob.glob(os.path.join(checkpoint_for_encoded_columns, '*.parquet'))
             if len(parquet_files) == 0:
                 raise ValueError("没找到parquet_files")
-            print("单个列的parquet文件存在")
+            self.logger.info(f"单个列的parquet文件加载成功from {checkpoint_for_encoded_columns}")
+            
             columns = []
             for file in parquet_files:
                 table = pq.read_table(file)  # 读取 Parquet 文件
@@ -140,7 +155,7 @@ class Tokenizer:
                                                 for col in columns for column_name in col.column_names],
                                                 names=[col.column_names[0] for col in columns])
             pq.write_table(ddf, existed_encoded_table)
-            print(f"合并完成并保存为{existed_encoded_table}")
+            self.logger.info(f"完整的parquet文件合并成功，储存到{existed_encoded_table}")
         ddf = pq.read_table(existed_encoded_table)
         # TODO: 有bug
         ddf = pl.from_arrow(ddf)   

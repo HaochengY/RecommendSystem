@@ -1,0 +1,112 @@
+2024-11-22 14:46:51,529 INFO [my_logger] Load data from root dir /home/yanghc03/fuxictr-main/FuxiCTR/data/tiny_parquet
+2024-11-22 14:46:51,530 INFO [my_logger] 检测到已编码后的数据完整
+2024-11-22 14:46:54,385 INFO [my_logger] 模型:LR, 批次大小: 8, embedding维度:1, 优化器: Adam
+2024-11-22 14:46:54,385 INFO [my_logger] 学习率:0.001, 正则化系数:5e-07,CPU/GPU: cuda:0, 损失函数: BCE
+2024-11-22 14:46:54,385 INFO [my_logger] 训练样本个数:100, 验证样本个数:100
+2024-11-22 14:46:54,385 INFO [my_logger] 开始训练:13 batches/epoch
+2024-11-22 14:46:54,385 INFO [my_logger] =========== Epoch = 1 start ===========
+2024-11-22 14:46:55,544 INFO [my_logger] Train Loss: 0.670501
+2024-11-22 14:46:55,544 INFO [my_logger] Evaluation @epoch 1 - batch 13: 
+2024-11-22 14:46:56,333 INFO [my_logger] AUC: 0.729167 - Logloss: 0.636725
+2024-11-22 14:46:56,337 INFO [my_logger] Best Model with AUC = 0.7291666666666666 储存至/home/yanghc03/recommended_system/RecommendSystem/result/Criteo_x1/20241122/144651/LR.model
+2024-11-22 14:46:56,337 INFO [my_logger] =========== Epoch = 1 end ===========
+2024-11-22 14:46:56,516 INFO [my_logger] Train Loss: 0.612619
+2024-11-22 14:46:56,516 INFO [my_logger] Evaluation @epoch 2 - batch 13: 
+2024-11-22 14:46:56,575 INFO [my_logger] AUC: 0.947917 - Logloss: 0.584739
+2024-11-22 14:46:56,576 INFO [my_logger] 降低学习率为: 0.000100
+2024-11-22 14:46:56,576 INFO [my_logger] =========== Epoch = 2 end ===========
+2024-11-22 14:46:56,749 INFO [my_logger] Train Loss: 0.581845
+2024-11-22 14:46:56,749 INFO [my_logger] Evaluation @epoch 3 - batch 13: 
+2024-11-22 14:46:56,793 INFO [my_logger] AUC: 0.950521 - Logloss: 0.579736
+2024-11-22 14:46:56,793 INFO [my_logger] 降低学习率为: 0.000010
+2024-11-22 14:46:56,793 INFO [my_logger] ======== Early stop at Epoch = 2 =========
+2024-11-22 14:46:56,793 INFO [my_logger] 训练结束.
+2024-11-22 14:46:56,793 INFO [my_logger] 加载最优模型: /home/yanghc03/recommended_system/RecommendSystem/result/Criteo_x1/20241122/144651/LR.model
+2024-11-22 14:46:56,796 INFO [my_logger] ======== Validation evaluation ========
+2024-11-22 14:46:56,836 INFO [my_logger] AUC: 0.729167 - Logloss: 0.636725
+2024-11-22 14:46:56,836 INFO [my_logger] ======== Test evaluation ========
+2024-11-22 14:46:57,564 INFO [my_logger] AUC: 0.729167 - Logloss: 0.636725
+2024-11-22 14:46:57,564 INFO [my_logger] 
+
+
+
+
+
+2024-11-22 14:47:12,729 INFO [my_logger] Load data from root dir /home/yanghc03/fuxictr-main/FuxiCTR/data/tiny_parquet
+2024-11-22 14:47:12,730 INFO [my_logger] 检测到已编码后的数据完整
+2024-11-22 14:47:15,542 INFO [my_logger] 模型:LR, 批次大小: 8, embedding维度:1, 优化器: Adam
+2024-11-22 14:47:15,542 INFO [my_logger] 学习率:0.001, 正则化系数:5e-07,CPU/GPU: cuda:0, 损失函数: BCE
+2024-11-22 14:47:15,542 INFO [my_logger] 训练样本个数:100, 验证样本个数:100
+2024-11-22 14:47:15,543 INFO [my_logger] 开始训练:13 batches/epoch
+2024-11-22 14:47:15,543 INFO [my_logger] =========== Epoch = 1 start ===========
+2024-11-22 14:47:16,694 INFO [my_logger] Train Loss: 0.670501
+2024-11-22 14:47:16,694 INFO [my_logger] Evaluation @epoch 1 - batch 13: 
+2024-11-22 14:47:17,444 INFO [my_logger] AUC: 0.729167 - Logloss: 0.636725
+2024-11-22 14:47:17,448 INFO [my_logger] Best Model with AUC = 0.729167 储存至/home/yanghc03/recommended_system/RecommendSystem/result/Criteo_x1/20241122/144712/LR.model
+2024-11-22 14:47:17,448 INFO [my_logger] =========== Epoch = 1 end ===========
+2024-11-22 14:47:17,635 INFO [my_logger] Train Loss: 0.612619
+2024-11-22 14:47:17,635 INFO [my_logger] Evaluation @epoch 2 - batch 13: 
+2024-11-22 14:47:17,683 INFO [my_logger] AUC: 0.947917 - Logloss: 0.584739
+2024-11-22 14:47:17,683 INFO [my_logger] 降低学习率为: 0.000100
+2024-11-22 14:47:17,683 INFO [my_logger] =========== Epoch = 2 end ===========
+2024-11-22 14:47:17,858 INFO [my_logger] Train Loss: 0.581845
+2024-11-22 14:47:17,858 INFO [my_logger] Evaluation @epoch 3 - batch 13: 
+2024-11-22 14:47:17,900 INFO [my_logger] AUC: 0.950521 - Logloss: 0.579736
+2024-11-22 14:47:17,901 INFO [my_logger] 降低学习率为: 0.000010
+2024-11-22 14:47:17,901 INFO [my_logger] ======== Early stop at Epoch = 2 =========
+2024-11-22 14:47:17,901 INFO [my_logger] 训练结束.
+2024-11-22 14:47:17,901 INFO [my_logger] 加载最优模型: /home/yanghc03/recommended_system/RecommendSystem/result/Criteo_x1/20241122/144712/LR.model
+2024-11-22 14:47:17,904 INFO [my_logger] ======== Validation evaluation ========
+2024-11-22 14:47:17,948 INFO [my_logger] AUC: 0.729167 - Logloss: 0.636725
+2024-11-22 14:47:17,948 INFO [my_logger] ======== Test evaluation ========
+2024-11-22 14:47:18,692 INFO [my_logger] AUC: 0.729167 - Logloss: 0.636725
+2024-11-22 14:47:18,693 INFO [my_logger] 
+
+
+
+
+
+2024-11-22 15:06:50,306 INFO [my_logger] Load data from root dir /home/yanghc03/fuxictr-main/FuxiCTR/data/tiny_parquet
+2024-11-22 15:06:50,306 INFO [my_logger] 检测到已编码后的数据完整
+2024-11-22 15:06:53,127 INFO [my_logger] 模型:LR, 批次大小: 8, embedding维度:1, 优化器: Adam
+2024-11-22 15:07:31,676 INFO [my_logger] Load data from root dir /home/yanghc03/fuxictr-main/FuxiCTR/data/tiny_parquet
+2024-11-22 15:07:31,676 INFO [my_logger] 检测到已编码后的数据完整
+2024-11-22 15:07:34,518 INFO [my_logger] 模型:LR, 批次大小: 8, embedding维度:1, 优化器: Adam
+2024-11-22 15:07:34,519 INFO [my_logger] 学习率:0.001, net正则化系数:5e-07, emb正则化系数:5e-07,CPU/GPU: cuda:0, 损失函数: BCE
+2024-11-22 15:07:34,519 INFO [my_logger] 训练样本个数:100, 验证样本个数:100
+2024-11-22 15:07:34,519 INFO [my_logger] 开始训练:13 batches/epoch
+2024-11-22 15:07:34,519 INFO [my_logger] =========== Epoch = 1 start ===========
+2024-11-22 15:08:13,267 INFO [my_logger] Load data from root dir /home/yanghc03/fuxictr-main/FuxiCTR/data/tiny_parquet
+2024-11-22 15:08:13,267 INFO [my_logger] 检测到已编码后的数据完整
+2024-11-22 15:08:16,51 INFO [my_logger] 模型:LR, 批次大小: 8, embedding维度:1, 优化器: Adam
+2024-11-22 15:08:16,51 INFO [my_logger] 学习率:0.001, net正则化系数:5e-07, emb正则化系数:5e-07,CPU/GPU: cuda:0, 损失函数: BCE
+2024-11-22 15:08:16,52 INFO [my_logger] 训练样本个数:100, 验证样本个数:100
+2024-11-22 15:08:16,52 INFO [my_logger] 开始训练:13 batches/epoch
+2024-11-22 15:08:16,52 INFO [my_logger] =========== Epoch = 1 start ===========
+2024-11-22 15:08:17,290 INFO [my_logger] Train Loss: 0.670504
+2024-11-22 15:08:17,290 INFO [my_logger] Evaluation @epoch 1 - batch 13: 
+2024-11-22 15:08:18,22 INFO [my_logger] AUC: 0.729167 - Logloss: 0.636731
+2024-11-22 15:08:18,25 INFO [my_logger] Best Model with AUC = 0.729167 储存至/home/yanghc03/recommended_system/RecommendSystem/result/Criteo_x1/20241122/150813/LR.model
+2024-11-22 15:08:18,26 INFO [my_logger] =========== Epoch = 1 end ===========
+2024-11-22 15:08:18,323 INFO [my_logger] Train Loss: 0.612621
+2024-11-22 15:08:18,323 INFO [my_logger] Evaluation @epoch 2 - batch 13: 
+2024-11-22 15:08:18,377 INFO [my_logger] AUC: 0.947917 - Logloss: 0.584746
+2024-11-22 15:08:18,377 INFO [my_logger] 降低学习率为: 0.000100
+2024-11-22 15:08:18,377 INFO [my_logger] =========== Epoch = 2 end ===========
+2024-11-22 15:08:18,675 INFO [my_logger] Train Loss: 0.581846
+2024-11-22 15:08:18,675 INFO [my_logger] Evaluation @epoch 3 - batch 13: 
+2024-11-22 15:08:18,718 INFO [my_logger] AUC: 0.950521 - Logloss: 0.579744
+2024-11-22 15:08:18,718 INFO [my_logger] 降低学习率为: 0.000010
+2024-11-22 15:08:18,718 INFO [my_logger] ======== Early stop at Epoch = 2 =========
+2024-11-22 15:08:18,719 INFO [my_logger] 训练结束.
+2024-11-22 15:08:18,719 INFO [my_logger] 加载最优模型: /home/yanghc03/recommended_system/RecommendSystem/result/Criteo_x1/20241122/150813/LR.model
+2024-11-22 15:08:18,722 INFO [my_logger] ======== Validation evaluation ========
+2024-11-22 15:08:18,764 INFO [my_logger] AUC: 0.729167 - Logloss: 0.636731
+2024-11-22 15:08:18,764 INFO [my_logger] ======== Test evaluation ========
+2024-11-22 15:08:19,497 INFO [my_logger] AUC: 0.729167 - Logloss: 0.636731
+2024-11-22 15:08:19,497 INFO [my_logger] 
+
+
+
+
+

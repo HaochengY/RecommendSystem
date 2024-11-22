@@ -1,3 +1,4 @@
+import logging
 import pickle
 import random
 import torch
@@ -85,3 +86,13 @@ def convert_dict(d):
             v = int(v)
         new_d[k] = v
     return new_d
+
+
+def get_device(gpu=-1):
+    if gpu >= 0 and torch.cuda.is_available():
+        device = torch.device("cuda:" + str(gpu))
+    else:
+        device = torch.device("cpu")   
+    logging.info(f"Calculating with {device}")
+    
+    return device
